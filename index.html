@@ -1,16 +1,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-	<title>DC.js + Leaflet</title>
+    <html lang="en"><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" name="viewport">
+    <meta name="author" content="Edouard Legoupil">
+    <title>Site Assessment - CCCM Cluster Iraq</title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon" />
 
-	<meta itemprop="name" content="DC.js + Leaflet"/>
-	<meta itemprop="description" content="DC.js + Leaflet chart"/>
+    <meta itemprop="name" content="Site Assessment - CCCM Cluster Iraq"/>
+    <meta itemprop="description" content="Site Assessment - CCCM Cluster Iraq"/>
 
-	<meta charset="UTF-8">
+    <meta property="og:title" content="Site Assessment - CCCM Cluster Iraq">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta property="og:site_name" content="Site Assessment - CCCM Cluster Iraq">
+    <meta property="og:description" content="Site Assessment - CCCM Cluster Iraq">
 
-	<link type="text/css" href="lib/leaflet.css" rel="stylesheet"/>
-	<link type="text/css" href="lib/leaflet.markercluster.css" rel="stylesheet"/>
-	<link type="text/css" href="lib/dc.css" rel="stylesheet"/>
+    <link type="text/css" href="css/leaflet.css" rel="stylesheet"/>
+    <link type="text/css" href="css/leaflet.markercluster.css" rel="stylesheet"/>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/dc.css">
+    <link rel="stylesheet" type="text/css" href="css/dashboard.css">
+
+    <!-- Add IntroJs styles and JS -->
+    <link rel="stylesheet" type="text/css" href="css/introjs.css">
+
+    <script type="text/javascript" src="js/intro.js"></script>
+
 
   <style>
     #holder {
@@ -28,214 +49,288 @@
     .pie {
       margin-left:30px;
     }
+
+    h1 {
+    color: #2a87c8;
+    }
   </style>
+
+
+
+
 </head>
 <body>
 
-<div id="holder">
-  <div id="demo1">
-    <h2>Markers with clustering, popups and single selection</h2>
-    <i>Renewable energy plants in Bulgaria in 2012</i>
-    <div class="map"></div>
-    <div class="pie"></div>
-  </div>
 
-  <div id="demo2">
-    <h2>Markers with no clustering and selection by area</h2>
-    <i>Renewable energy plants in Bulgaria in 2012</i>
-    <div class="map"></div>
-    <div class="pie"></div>
-  </div>
+    <div style="display: block;" class="container" id="dashboard">
+        <h1>
+            <strong>Site Assessment - CCCM Cluster Iraq</strong>
+           <a href="https://www.humanitarianresponse.info/operations/iraq/camp-coordination-management" target="_blank">
+               <img src="images/ccccmheaders.png" style="height: 65px"></a>
+        </h1>
+        <div class="col-xs-12">Explore the profile of the informal settlements hosting IDPs.</div>
 
-  <div id="demo3">
-    <h2>Le choropleth</h2>
-    <i>Population by age groups in Bulgaria in 2011 (excluding the capital)</i>
-    <div class="map"></div>
-    <div class="pie"></div>
-  </div>
-</div>
+            <div class="socialmedia" data-step="6" data-intro="Feel Free to share if you like it!" data-position="left">
+                <table>
+                  <tbody><tr>
+                    <td valign="middle"><a href="https://twitter.com/intent/tweet?url=http://data.unhcr.org/jordan/rrp6&amp;text=%23Jordan%20@Refugees" target="_blank"><img src="images/Twitter.png" style="height: 25px; width: 25px"></a></td>
+                </tr>
+                </tbody></table>
+           </div>
 
-<script type="text/javascript" src="lib/d3.js"></script>
-<script type="text/javascript" src="lib/crossfilter.js"></script>
-<script type="text/javascript" src="lib/dc.js"></script>
-<script type="text/javascript" src="lib/leaflet.js"></script>
 
-<!--Optional-->
-<script type="text/javascript" src="lib/leaflet.markercluster.js"></script>
+            <div class="row">
+                <div class="col-md-8" data-step="5" data-intro="Here's the number of activities you filtered. Use the reset button to delete all your filters" data-position="right">
+                    <div class="dc-chart" id="count-info"><strong><span class="filter-count">3</span></strong> selected records</div>
+                    <a class="reset btn btn-primary btn-sm" id="reset" href="javascript:dc.filterAll();dc.redrawAll();">Reset All</a>
+                </div>
+                <div class="col-md-4">
+                    <a class="btn btn btn-success" href="javascript:void(0);" onclick="javascript:introJs().start();">Tutorial</a>
+                </div>
+            </div>
 
-<script type="text/javascript" src="dc.leaflet.js"></script>
+            <div class="row" id="cccm">
+                <div class="col-md-4">
+                  <div class="row">
+                    <div class="pie" class="col-xs-6 dc-chart" data-step="1" data-intro="Click on this pie chart to filter by sector." data-position="right">
+                      <h4>Participating Organisations</h4>
+                      </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="waterp" class="col-xs-6 dc-chart" data-step="2" data-intro="Click on this pie chart to filter by sector." data-position="right">
+                      <h4>Water Access</h4>
+                      </div>
+                  </div>
+                  
+                  
+                  <div class="row">
+                    <div class="waterqp" class="col-xs-6 dc-chart" data-step="2" data-intro="Click on this pie chart to filter by sector." data-position="right">
+                      <h4>Water Quality</h4>
+                      </div>
+                  </div>
+                  
+                  
+                  <div class="row">
+                    <div class="electricp" class="col-xs-6 dc-chart" data-step="2" data-intro="Click on this pie chart to filter by sector." data-position="right">
+                      <h4>Electric</h4>
+                      </div>
+                  </div>
+                  
+                  
+                  <div class="row">
+                    <div class="openelementp" class="col-xs-6 dc-chart" data-step="2" data-intro="Click on this pie chart to filter by sector." data-position="right">
+                      <h4>Open to the elements</h4>
+                      </div>
+                  </div>
+                  
+                  
+                  <div class="row">
+                    <div class="hazardsp" class="col-xs-6 dc-chart" data-step="2" data-intro="Click on this pie chart to filter by sector." data-position="right">
+                      <h4>Hazard</h4>
+                      </div>
+                  </div>
+                  
+                  
+                  <div class="row">
+                    <div class="minesp" class="col-xs-6 dc-chart" data-step="2" data-intro="Click on this pie chart to filter by sector." data-position="right">
+                      <h4>Mines</h4>
+                      </div>
+                  </div>
+                  
+                  
+                  <div class="row">
+                    <div class="fightingp" class="col-xs-6 dc-chart" data-step="2" data-intro="Click on this pie chart to filter by sector." data-position="right">
+                      <h4>Fighting</h4>
+                      </div>
+                  </div>
+                  
+                </div>
+                <div  class="map" class="col-md-8" >
+                </div>
+            </div>
+
+    </div>
+
+    <small><a href="https://github.com/unhcr-iraq/Site-Assessment" target="_blank">Credit</a></small>
+
+    <script type="text/javascript" src="js/d3_002.js"></script>
+    <script type="text/javascript" src="js/d3.js"></script>
+    <script type="text/javascript" src="js/crossfilter.js"></script>
+    <script type="text/javascript" src="js/dc.js"></script>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+
+
+<!--maps-->
+    <script type="text/javascript" src="js/leaflet.js"></script>
+    <script type="text/javascript" src="js/leaflet.markercluster.js"></script>
+    <script type="text/javascript" src="js/dc.leaflet.js"></script>
+
+
 <script type="text/javascript">
 
 /*     Markers      */
+var numberFormat = d3.format(",f");
 
-d3.tsv("demo1.tsv", function(data) {
+
+
+
+d3.tsv("data/dataviz.tsv", function(data) {
   drawMarkerSelect(data);
-  drawMarkerArea(data);
+ /* drawMarkerArea(data); */
 });
 
 function drawMarkerSelect(data) {
   var xf = crossfilter(data);
   var groupname = "marker-select";
-	var facilities = xf.dimension(function(d) { return d.geo; });
-	var facilitiesGroup = facilities.group().reduceCount();
+    var facilities = xf.dimension(function(d) { return d.geo; });
+    var facilitiesGroup = facilities.group().reduceCount();
 
-  dc.leafletMarkerChart("#demo1 .map",groupname)
+  dc.leafletMarkerChart("#cccm .map",groupname)
       .dimension(facilities)
       .group(facilitiesGroup)
       .width(600)
-	    .height(400)
-      .center([42.69,25.42])
-      .zoom(7)
-      .cluster(true);  
+        .height(400)
+      .center([34.7503,44.5385])
+      .zoom(6)
+      .cluster(true);
 
-	var types = xf.dimension(function(d) { return d.type; });
-	var typesGroup = types.group().reduceCount();
-
-  dc.pieChart("#demo1 .pie",groupname)
-      .dimension(types)
-      .group(typesGroup)
-      .width(200)
-	    .height(200)
-	    .renderLabel(true)
-	    .renderTitle(true)
+  var types = xf.dimension(function(d) { return d.organisat; });
+  var typesGroup = types.group().reduceCount();
+  dc.pieChart("#cccm .pie",groupname)
+        .dimension(types)
+        .group(typesGroup)
+        .width(100)
+        .height(100)
+        .renderLabel(true)
+        .renderTitle(true)
       .ordering(function (p) {
         return -p.value;
       });
 
-	dc.renderAll(groupname);
-}
+//water_access	water_quality	electric	openelement	damage	hazards	mines	fighting
 
-function drawMarkerArea(data) {
-  var xf = crossfilter(data);
-  var groupname = "marker-area";
-	var facilities = xf.dimension(function(d) { return d.geo; });
-	var facilitiesGroup = facilities.group().reduceCount();
+  var waters = xf.dimension(function(d) { return d.water_access; });
+  var watersGroup = waters.group().reduceCount();
+  dc.pieChart("#cccm .waterp",groupname)
+        .dimension(waters)
+        .group(watersGroup)
+        .width(100)
+        .height(100)
+        .renderLabel(true)
+        .renderTitle(true)
+       .ordering(function (p) {
+        return -p.value;
+      });
+      
 
-  dc.leafletMarkerChart("#demo2 .map",groupname)
-      .dimension(facilities)
-      .group(facilitiesGroup)
-      .width(600)
-	    .height(400)
-      .center([42.69,25.42])
-      .zoom(7)
-      .renderPopup(false)
-      .filterByArea(true);  
-
-	var types = xf.dimension(function(d) { return d.type; });
-	var typesGroup = types.group().reduceCount();
-
-  dc.pieChart("#demo2 .pie",groupname)
-      .dimension(types)
-      .group(typesGroup)
-      .width(200)
-	    .height(200)
-	    .renderLabel(true)
-	    .renderTitle(true)
-      .ordering(function (p) {
+  var waterqs = xf.dimension(function(d) { return d.water_quality; });
+  var waterqsGroup = waterqs.group().reduceCount();
+  dc.pieChart("#cccm .waterqp",groupname)
+        .dimension(waterqs)
+        .group(waterqsGroup)
+        .width(100)
+        .height(100)
+        .renderLabel(true)
+        .renderTitle(true)
+       .ordering(function (p) {
         return -p.value;
       });
 
-	dc.renderAll(groupname);
-}
 
-var demo2_geojson=false;
-var demo2=false;
-d3.json("bulgaria.geojson", function(data) {
-  demo2_geojson=data;
-  if (demo2)
-    drawChoropleth(demo2,demo2_geojson);
-});
-d3.csv("demo2.csv", function(data) {
-  demo2=data;
-  if (demo2_geojson)
-    drawChoropleth(demo2,demo2_geojson);
-});
-
-/*     Choropleth      */
-
-function drawChoropleth(data,geojson) {
-  dataP = [];
-  data.filter(function(d) {
-    return d.code && d.code!='SOF46';
-  }).forEach(function(d) {
-    d.sum = 0;
-    for(var p in d)
-      if (p && p!="code" && p!="sum") {
-        dataP.push({'code':d.code,'type':p,'value':+d[p]});
-        d.sum+=+d[p];
-      }
-  });
-  delete data;
-
-  var xf = crossfilter(dataP);
-  var groupname = "Choropleth";
-	var facilities = xf.dimension(function(d) { return d.code; });
-	var facilitiesGroup = facilities.group().reduceSum(function(d) { return d.value;});
-
-  dc.leafletChoroplethChart("#demo3 .map",groupname)
-      .dimension(facilities)
-      .group(facilitiesGroup)
-      .width(600)
-	    .height(400)
-      .center([42.69,25.42])
-      .zoom(7)
-      .geojson(geojson)
-      .colors(['#fff7f3', '#fde0dd', '#fcc5c0', '#fa9fb5', '#f768a1', '#dd3497', '#ae017e', '#7a0177', '#49006a'])
-      .colorDomain(function() {
-        return [dc.utils.groupMin(this.group(), this.valueAccessor()),
-         dc.utils.groupMax(this.group(), this.valueAccessor())];
-      })
-      .colorAccessor(function(d,i) {
-        return d.value;
-      })
-      .featureKeyAccessor(function(feature) {
-        return feature.properties.code;
-      })
-      .renderPopup(true)
-      .popup(function(d,feature) {
-        return feature.properties.nameEn+" : "+d.value;
-      });  
-
-	var types = xf.dimension(function(d) { return d.type; });
-	var typesGroup = types.group().reduceSum(function(d) { return d.value;});
-
-  dc.pieChart("#demo3 .pie",groupname)
-      .dimension(types)
-      .group(typesGroup)
-      .width(200)
-	    .height(200)
-      .ordering(function (p) {
-        return +p.key.substr(6);
-      })
-	    .renderLabel(false)
-	    .renderTitle(true)
-      .title(function(d) { 
-        var age = d.data.key.substr(6);
-        if (age.indexOf("p")==-1) 
-          age="Between "+(+age-4)+"-"+age;
-        else
-          age="Over "+age.substr(0,2);
-        return age+" : "+d.value;
+  var electrics = xf.dimension(function(d) { return d.electric; });
+  var electricsGroup = electrics.group().reduceCount();
+  dc.pieChart("#cccm .electricp",groupname)
+        .dimension(electrics)
+        .group(electricsGroup)
+        .width(100)
+        .height(100)
+        .renderLabel(true)
+        .renderTitle(true)
+       .ordering(function (p) {
+        return -p.value;
       });
+      
 
-	dc.renderAll(groupname);
+  var openelements = xf.dimension(function(d) { return d.openelement; });
+  var openelementsGroup = openelements.group().reduceCount();
+  dc.pieChart("#cccm .openelementp",groupname)
+        .dimension(openelements)
+        .group(openelementsGroup)
+        .width(100)
+        .height(100)
+        .renderLabel(true)
+        .renderTitle(true)
+       .ordering(function (p) {
+        return -p.value;
+      });
+  var damages = xf.dimension(function(d) { return d.damage; });
+  var damagesGroup = damages.group().reduceCount();
+  dc.pieChart("#cccm .damagep",groupname)
+        .dimension(damages)
+        .group(damagesGroup)
+        .width(100)
+        .height(100)
+        .renderLabel(true)
+        .renderTitle(true)
+       .ordering(function (p) {
+        return -p.value;
+      });
+  var hazardss = xf.dimension(function(d) { return d.hazards; });
+  var hazardssGroup = hazardss.group().reduceCount();
+  dc.pieChart("#cccm .hazardsp",groupname)
+        .dimension(hazardss)
+        .group(hazardssGroup)
+        .width(100)
+        .height(100)
+        .renderLabel(true)
+        .renderTitle(true)
+       .ordering(function (p) {
+        return -p.value;
+      });
+  var miness = xf.dimension(function(d) { return d.mines; });
+  var minessGroup = miness.group().reduceCount();
+  dc.pieChart("#cccm .minesp",groupname)
+        .dimension(miness)
+        .group(minessGroup)
+        .width(100)
+        .height(100)
+        .renderLabel(true)
+        .renderTitle(true)
+       .ordering(function (p) {
+        return -p.value;
+      });
+  var fightings = xf.dimension(function(d) { return d.fighting; });
+  var fightingsGroup = fightings.group().reduceCount();
+  dc.pieChart("#cccm .fightingp",groupname)
+        .dimension(fightings)
+        .group(fightingsGroup)
+        .width(100)
+        .height(100)
+        .renderLabel(true)
+        .renderTitle(true)
+       .ordering(function (p) {
+        return -p.value;
+      });      
+
+  dc.dataCount("#count-info")
+
+  dc.renderAll(groupname);
 }
+
+
 </script>
 
 
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
-	<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-2905006-14']);
-		_gaq.push(['_trackPageview']);
+    <script src="js/bootstrap.js"></script>
 
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
 
-	</script>
+<script>
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+</script>
+
+<div class="d3-tip n" style="position: absolute; display: none; box-sizing: border-box; top: 186.9px; left: 727.5px;"></div><div class="d3-tip" style="position: absolute; display: none; box-sizing: border-box;"></div>
 </body>
 </html>
