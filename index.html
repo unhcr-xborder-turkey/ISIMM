@@ -55,7 +55,7 @@
            </div>
 
 
-            <div class="row">
+            <div class="row" >
                 <div class="col-md-8" data-step="5" data-intro="Here's the number of activities you filtered. Use the reset button to delete all your filters" data-position="right">
                     <div class="dc-chart" id="count-info"><strong><span class="filter-count"></span></strong> selected records</div>
                     <a class="reset btn btn-primary btn-sm" id="reset" href="javascript:dc.filterAll();dc.redrawAll();">Reset All</a>
@@ -64,61 +64,72 @@
                     <a class="btn btn btn-success" href="javascript:void(0);" onclick="javascript:introJs().start();">More info</a>
                 </div>
             </div>
-
+            <!--
+             -->
+            <div  class="row" id="cccm"  data-step="2" data-intro="Here's the number of activities you filtered. Use the reset button to delete all your filters" data-position="right">
+                <h4>Filter on condition within the sites</h4>
+                <p><small><i>Based on site observation by enumerators</i></small></p>
+                    <div class="col-md-2" >
+                        <div class="waterp" id="cccm"  class="dc-chart" >
+                          <p><small>Water Access</small></p>
+                        </div>
+                    </div>
+                    <div class="col-md-2" >
+                        <div class="openelementp" id="cccm" class="dc-chart" >
+                          <p><small>Open to the elements</small></p>
+                        </div>
+                    </div>
+                    <div class="col-md-2" >
+                        <div class="hazardsp" id="cccm" class="dc-chart" >
+                          <p><small>Hazard</small></p>
+                        </div>
+                    </div>
+                    <div class="col-md-2" >
+                        <div class="waterqp" id="cccm" class="dc-chart" >
+                          <p><small>Water Quality</small></p>
+                        </div>
+                    </div>
+                    <div class="col-md-2" >
+                        <div class="electricp" id="cccm" class="dc-chart" >
+                          <p><small>Electric</small></p>
+                        </div>
+                    </div>
+                    <div class="col-md-2" >
+                        <div class="minesp" id="cccm" class="dc-chart" >
+                          <p><small>Mines</small></p>
+                        </div>
+                    </div>
+                    
+                    <!--
+                    <div class="col-md-1" >
+                        <div class="environmentp" id="cccm" class="dc-chart" >
+                          <h4>Site type</h4>
+                          <p><small></small></p>
+                        </div>
+                    </div>
+                        -->
+            </div>
+             
             <div class="row" id="cccm">
 
                 <div class="col-md-2">
+                    <div class="governoratep" class="col-xs-6 dc-chart" data-step="1" data-intro="Click on this pie chart to filter by sector." data-position="right">
+                      <h4>Governorates</h4>
+                      <p><small><i>Number of site per size</i></small></p>
+                    </div>
+                    
                     <div class="classp" class="col-xs-6 dc-chart" data-step="1" data-intro="Click on this pie chart to filter by sector." data-position="right">
                       <h4>Site size</h4>
                       <p><small><i>Number of site per size</i></small></p>
                     </div>
-                    <div class="environmentp" class="col-xs-6 dc-chart" data-step="1" data-intro="Click on this pie chart to filter by sector." data-position="right">
-                      <h4>Site Location</h4>
-                      <p><small></small></p>
-                    </div>
                 </div>
 
                 <div  class="col-md-4">
-                    <h4>Condition in the sites</h4>
-                    <p><small><i>Based on site observation by enumerators</i></small></p>
-                        <div class="col-md-4">
-                          <div class="row">
-                            <div class="waterp" class="dc-chart" >
-                              <p><small>Water Access</small></p>
-                              </div>
-                          </div>
-                          <div class="row">
-                            <div class="openelementp" class="dc-chart" >
-                              <p><small>Open to the elements</small></p>
-                              </div>
-                          </div>
-                          <div class="row">
-                            <div class="hazardsp" class="dc-chart" >
-                              <p><small>Hazard</small></p>
-                              </div>
-                          </div>
-                        </div>
-        
-        
-                        <div class="col-md-4">
-                          <div class="row">
-                            <div class="waterqp" class="dc-chart" >
-                              <p><small>Water Quality</small></p>
-                              </div>
-                          </div>
-                          <div class="row">
-                            <div class="electricp" class="dc-chart" >
-                              <p><small>Electric</small></p>
-                              </div>
-                          </div>
-                          <div class="row">
-                            <div class="minesp" class="dc-chart" >
-                              <p><small>Mines</p>
-                              </div>
-                          </div>
-                        </div>
+                    <div class="districtp" class="dc-chart" >
+                        <h4>Districts</h4>
+                        <p><small><i>Per age & Sex</i></small></p>
+                    </div>
                 </div>
-
 
                 <div  class="col-md-6">
                     <h4>Map</h4>
@@ -217,8 +228,8 @@ function drawMarkerSelect(data) {
   dc.leafletMarkerChart("#cccm .map",groupname)
       .dimension(facilities)
       .group(facilitiesGroup)
-      .width(500)
-      .height(300)
+      .width(600)
+      .height(410)
       .center([34.7503,44.5385])
       .zoom(6)
       .cluster(true);
@@ -231,13 +242,17 @@ function drawMarkerSelect(data) {
   dc.pieChart("#cccm .waterp",groupname)
         .dimension(waters)
         .group(watersGroup)
-        .width(80)
-        .height(80)
+        .width(75)
+        .height(75)
         .renderLabel(true)
         .renderTitle(true)
-       .ordering(function (p) {
-        return -p.value;
-      });
+        .colors(['#cb181d', /* maj */
+                        '#fb6a4a', /* mod */
+                        '#fcae91', /* min */
+                        '#fee5d9' /* no */
+                        ])
+         .colorDomain([0,4]);
+    //   .ordering(function (p) { return -p.value; });
 
 
   var waterqs = xf.dimension(function(d) { return d.water_quality; });
@@ -245,13 +260,17 @@ function drawMarkerSelect(data) {
   dc.pieChart("#cccm .waterqp",groupname)
         .dimension(waterqs)
         .group(waterqsGroup)
-        .width(80)
-        .height(80)
+        .width(75)
+        .height(75)
         .renderLabel(true)
         .renderTitle(true)
-       .ordering(function (p) {
-        return -p.value;
-      });
+        .colors(['#cb181d', /* maj */
+                        '#fb6a4a', /* mod */
+                        '#fcae91', /* min */
+                        '#fee5d9' /* no */
+                        ])
+         .colorDomain([0,4]);
+    //   .ordering(function (p) { return -p.value; });
 
 
   var electrics = xf.dimension(function(d) { return d.electric; });
@@ -259,13 +278,17 @@ function drawMarkerSelect(data) {
   dc.pieChart("#cccm .electricp",groupname)
         .dimension(electrics)
         .group(electricsGroup)
-        .width(80)
-        .height(80)
+        .width(75)
+        .height(75)
         .renderLabel(true)
         .renderTitle(true)
-       .ordering(function (p) {
-        return -p.value;
-      });
+        .colors(['#cb181d', /* maj */
+                        '#fb6a4a', /* mod */
+                        '#fcae91', /* min */
+                        '#fee5d9' /* no */
+                        ])
+         .colorDomain([0,4]);
+     //  .ordering(function (p) { return -p.value; });
 
 
   var openelements = xf.dimension(function(d) { return d.openelement; });
@@ -273,77 +296,97 @@ function drawMarkerSelect(data) {
   dc.pieChart("#cccm .openelementp",groupname)
         .dimension(openelements)
         .group(openelementsGroup)
-        .width(80)
-        .height(80)
+        .width(75)
+        .height(75)
         .renderLabel(true)
         .renderTitle(true)
-       .ordering(function (p) {
-        return -p.value;
-      });
+        .colors(['#cb181d', /* maj */
+                        '#fb6a4a', /* mod */
+                        '#fcae91', /* min */
+                        '#fee5d9' /* no */
+                        ])
+         .colorDomain([0,4]);
+     //   .ordering(function (p) { return -p.value; });
+       
   var damages = xf.dimension(function(d) { return d.damage; });
   var damagesGroup = damages.group().reduceCount();
   dc.pieChart("#cccm .damagep",groupname)
         .dimension(damages)
         .group(damagesGroup)
-        .width(80)
-        .height(80)
+        .width(75)
+        .height(75)
         .renderLabel(true)
         .renderTitle(true)
-       .ordering(function (p) {
-        return -p.value;
-      });
+        .colors(['#cb181d', /* maj */
+                        '#fb6a4a', /* mod */
+                        '#fcae91', /* min */
+                        '#fee5d9' /* no */
+                        ])
+         .colorDomain([0,4]);
+     //   .ordering(function (p) { return -p.value; });
+       
   var hazardss = xf.dimension(function(d) { return d.hazards; });
   var hazardssGroup = hazardss.group().reduceCount();
   dc.pieChart("#cccm .hazardsp",groupname)
         .dimension(hazardss)
         .group(hazardssGroup)
-        .width(80)
-        .height(80)
+        .width(75)
+        .height(75)
         .renderLabel(true)
         .renderTitle(true)
-       .ordering(function (p) {
-        return -p.value;
-      });
+        .colors(['#cb181d', /* maj */
+                        '#fb6a4a', /* mod */
+                        '#fcae91', /* min */
+                        '#fee5d9' /* no */
+                        ])
+         .colorDomain([0,4]);
+    //    .ordering(function (p) { return -p.value; });
+       
   var miness = xf.dimension(function(d) { return d.mines; });
   var minessGroup = miness.group().reduceCount();
   dc.pieChart("#cccm .minesp",groupname)
         .dimension(miness)
         .group(minessGroup)
-        .width(80)
-        .height(80)
+        .width(75)
+        .height(75)
         .renderLabel(true)
         .renderTitle(true)
-       .ordering(function (p) {
-        return -p.value;
-      });
+        .colors(['#cb181d', /* maj */
+                        '#fb6a4a', /* mod */
+                        '#fcae91', /* min */
+                        '#fee5d9' /* no */
+                        ])
+         .colorDomain([0,4]);
+    //    .ordering(function (p) { return -p.value; });
+       
   var fightings = xf.dimension(function(d) { return d.fighting; });
   var fightingsGroup = fightings.group().reduceCount();
   dc.pieChart("#cccm .fightingp",groupname)
         .dimension(fightings)
         .group(fightingsGroup)
-        .width(80)
-        .height(80)
+        .width(75)
+        .height(75)
         .renderLabel(true)
         .renderTitle(true)
-       .ordering(function (p) {
-        return -p.value;
-      });
+        .colors(['#cb181d', /* maj */
+                        '#fb6a4a', /* mod */
+                        '#fcae91', /* min */
+                        '#fee5d9' /* no */
+                        ])
+         .colorDomain([0,4]);
+    //    .ordering(function (p) { return -p.value; });
 
 
   var environments = xf.dimension(function(d) { return d.environment; });
   var environmentsGroup = environments.group().reduceCount();
-  dc.rowChart("#cccm .environmentp",groupname)
+  dc.pieChart("#cccm .environmentp",groupname)
         .dimension(environments)
         .group(environmentsGroup)
-        .width(200)
-        .height(150)
+        .width(75)
+        .height(75)
         .renderLabel(true)
         .renderTitle(true)
-        .colors(['#3182bd'])
-        .colorDomain([0,0])
-        .colorAccessor(function(d, i){return 1;})
-        .xAxis().ticks(4).tickFormat(d3.format("s"));
-       // .ordering(function (p) { return -p.value;});
+        .ordering(function (p) { return -p.value; });
 
 
   var classs = xf.dimension(function(d) { return d.class; });
@@ -377,6 +420,51 @@ function drawMarkerSelect(data) {
         .xAxis().ticks(4).tickFormat(d3.format("s"));
        // .ordering(function (p) { return -p.value;});
 
+
+  var districts = xf.dimension(function(d) { return d.district; });
+  var districtsByIndividual = districts.group().reduceSum(function (d) { return d.individual; });
+  var districtsByMen = districts.group().reduceSum(function (d) { return d.men; });
+  var districtsByWomen  = districts.group().reduceSum(function (d) { return d.women; });
+  var districtsByBoy =  districts.group().reduceSum(function (d) { return d.boys; });
+  var districtsByGirl = districts.group().reduceSum(function (d) { return d.girls; });
+  //var districtsGroup = types.group().reduceCount();
+  
+  dc.rowChart("#cccm .districtp",groupname)
+        .dimension(districts)
+        .group(districtsByIndividual)
+       // .group(districtsByMen)
+       // .stack(districtsByWomen)
+       // .stack(districtsByBoy)
+       // .stack(districtsByGirl)
+       // .elasticX(true)
+      //  .data(function(group) { return group.top(10); })
+        .width(350)
+        .height(400)
+        .renderLabel(true)
+        .ordering(function (p) { return -p.value;})
+        .colors(['#3182bd'])
+        .colorDomain([0,0])
+        .colorAccessor(function(d, i){return 1;})
+        .xAxis().ticks(4).tickFormat(d3.format("s"));
+
+  var governorates = xf.dimension(function(d) { return d.governorate; });
+  var governoratesByIndividual = governorates.group().reduceSum(function (d) { return d.individual; });
+  var governoratesByHousehold = governorates.group().reduceSum(function (d) { return d.household; });
+  //var governoratesGroup = types.group().reduceCount();
+  
+  dc.rowChart("#cccm .governoratep",groupname)
+        .dimension(governorates)
+        .group(governoratesByIndividual)
+        //.stack(governoratesByHousehold)
+       // .elasticX(true)
+        .width(200)
+        .height(150)
+        .renderLabel(true)
+        .ordering(function (p) { return -p.value;})
+        .colors(['#3182bd'])
+        .colorDomain([0,0])
+        .colorAccessor(function(d, i){return 1;})
+        .xAxis().ticks(4).tickFormat(d3.format("s"));
 
   dc.dataCount("#count-info")
 
