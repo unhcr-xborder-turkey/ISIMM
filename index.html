@@ -36,7 +36,7 @@
     <div style="display: none;" class="col-sm-4 col-md-offset4" id="loading">
         <h1>Patience: We are wrapping up the data... </h1><small>This webpage does not work on IE8 or older... Upgrade your browser if needed</small>
     </div>
-    
+
     <div style="display: block;" class="container" id="dashboard">
 
         <div class="col-xs-12">
@@ -57,8 +57,15 @@
 
             <div class="row" >
                 <div class="col-md-8" data-step="5" data-intro="Here's the number of activities you filtered. Use the reset button to delete all your filters" data-position="right">
-                    <div class="dc-chart" id="count-info"><strong><span class="filter-count"></span></strong> selected records</div>
-                    <a class="reset btn btn-primary btn-sm" id="reset" href="javascript:dc.filterAll();dc.redrawAll();">Reset All</a>
+                    
+
+                    <div id="count-info" >
+                        <h2><strong><span class="filter-count"></span></strong></h2> selected out of <strong><span class="total-count"></span></strong> records.
+                    </div>                        
+                    <div >
+                        <a class="reset btn btn-primary btn-sm" id="reset" href="javascript:dc.filterAll();dc.redrawAll();">Reset All</a>
+                    </div>
+
                 </div>
                 <div class="col-md-4">
                     <a class="btn btn btn-success" href="javascript:void(0);" onclick="javascript:introJs().start();">More info</a>
@@ -70,23 +77,23 @@
                 <h4>Filter on condition within the sites</h4>
                 <p><small><i>Based on site observation by enumerators</i></small></p>
                     <div class="col-md-2" >
-                        <div class="waterp" id="cccm"  class="dc-chart" >
-                          <p><small>Water Access</small></p>
-                        </div>
-                    </div>
-                    <div class="col-md-2" >
                         <div class="openelementp" id="cccm" class="dc-chart" >
                           <p><small>Open to the elements</small></p>
                         </div>
                     </div>
                     <div class="col-md-2" >
-                        <div class="hazardsp" id="cccm" class="dc-chart" >
-                          <p><small>Hazard</small></p>
+                        <div class="waterp" id="cccm"  class="dc-chart" >
+                          <p><small>Water Access</small></p>
                         </div>
                     </div>
                     <div class="col-md-2" >
                         <div class="waterqp" id="cccm" class="dc-chart" >
                           <p><small>Water Quality</small></p>
+                        </div>
+                    </div>
+                    <div class="col-md-2" >
+                        <div class="hazardsp" id="cccm" class="dc-chart" >
+                          <p><small>Hazard</small></p>
                         </div>
                     </div>
                     <div class="col-md-2" >
@@ -99,17 +106,8 @@
                           <p><small>Mines</small></p>
                         </div>
                     </div>
-                    
-                    <!--
-                    <div class="col-md-1" >
-                        <div class="environmentp" id="cccm" class="dc-chart" >
-                          <h4>Site type</h4>
-                          <p><small></small></p>
-                        </div>
-                    </div>
-                        -->
             </div>
-             
+
             <div class="row" id="cccm">
 
                 <div class="col-md-2">
@@ -117,7 +115,7 @@
                       <h4>Governorates</h4>
                       <p><small><i>Number of site per size</i></small></p>
                     </div>
-                    
+
                     <div class="classp" class="col-xs-6 dc-chart" data-step="1" data-intro="Click on this pie chart to filter by sector." data-position="right">
                       <h4>Site size</h4>
                       <p><small><i>Number of site per size</i></small></p>
@@ -131,11 +129,33 @@
                     </div>
                 </div>
 
+
+                    <!--
+                <div  class="col-md-3">
+
+
+                       <div  class="accomp" id="cccm" class="dc-chart">
+                          <h4>Accomodation</h4>
+                          <p><small><i></i></small></p>
+                        </div>
+
+
+                        <div class="environmentp" id="cccm" class="dc-chart" >
+                          <h4>Site type</h4>
+                          <p><small><i></i></small></p>
+                        </div>
+                    </div>
+                </div>
+                        -->
+
                 <div  class="col-md-6">
                     <h4>Map</h4>
                       <p><small><i>Location of the sites. click on the map for more information</i></small></p>
-                    <div  class="map"  > </div>
+                    <div  class="map" id="cccm"  > </div>
                 </div>
+
+
+
 
             </div>
             <div class="row" ></div>
@@ -216,11 +236,13 @@ var numberFormat = d3.format(",f");
 
 d3.tsv("data/dataviz.tsv", function(data) {
   drawMarkerSelect(data);
- /* drawMarkerArea(data); */
 });
 
 function drawMarkerSelect(data) {
   var xf = crossfilter(data);
+// var all = dc.groupAll();
+var all = xf.groupAll();
+
   var groupname = "marker-select";
     var facilities = xf.dimension(function(d) { return d.geo; });
     var facilitiesGroup = facilities.group().reduceCount();
@@ -307,7 +329,7 @@ function drawMarkerSelect(data) {
                         ])
          .colorDomain([0,4]);
      //   .ordering(function (p) { return -p.value; });
-       
+
   var damages = xf.dimension(function(d) { return d.damage; });
   var damagesGroup = damages.group().reduceCount();
   dc.pieChart("#cccm .damagep",groupname)
@@ -324,7 +346,7 @@ function drawMarkerSelect(data) {
                         ])
          .colorDomain([0,4]);
      //   .ordering(function (p) { return -p.value; });
-       
+
   var hazardss = xf.dimension(function(d) { return d.hazards; });
   var hazardssGroup = hazardss.group().reduceCount();
   dc.pieChart("#cccm .hazardsp",groupname)
@@ -341,7 +363,7 @@ function drawMarkerSelect(data) {
                         ])
          .colorDomain([0,4]);
     //    .ordering(function (p) { return -p.value; });
-       
+
   var miness = xf.dimension(function(d) { return d.mines; });
   var minessGroup = miness.group().reduceCount();
   dc.pieChart("#cccm .minesp",groupname)
@@ -358,7 +380,7 @@ function drawMarkerSelect(data) {
                         ])
          .colorDomain([0,4]);
     //    .ordering(function (p) { return -p.value; });
-       
+
   var fightings = xf.dimension(function(d) { return d.fighting; });
   var fightingsGroup = fightings.group().reduceCount();
   dc.pieChart("#cccm .fightingp",groupname)
@@ -428,7 +450,7 @@ function drawMarkerSelect(data) {
   var districtsByBoy =  districts.group().reduceSum(function (d) { return d.boys; });
   var districtsByGirl = districts.group().reduceSum(function (d) { return d.girls; });
   //var districtsGroup = types.group().reduceCount();
-  
+
   dc.rowChart("#cccm .districtp",groupname)
         .dimension(districts)
         .group(districtsByIndividual)
@@ -451,7 +473,7 @@ function drawMarkerSelect(data) {
   var governoratesByIndividual = governorates.group().reduceSum(function (d) { return d.individual; });
   var governoratesByHousehold = governorates.group().reduceSum(function (d) { return d.household; });
   //var governoratesGroup = types.group().reduceCount();
-  
+
   dc.rowChart("#cccm .governoratep",groupname)
         .dimension(governorates)
         .group(governoratesByIndividual)
@@ -466,7 +488,30 @@ function drawMarkerSelect(data) {
         .colorAccessor(function(d, i){return 1;})
         .xAxis().ticks(4).tickFormat(d3.format("s"));
 
-  dc.dataCount("#count-info")
+
+//Improvised_Shelter    Tent    Individual_mud_building Individual_mix_building Individual_concrete_building
+//  Shop    Apartment_block Under_construction
+/*
+  var impros = xf.dimension(function(d) { return d.Improvised_Shelter; });
+  var improsGroup = impros.group().reduceCount();
+  dc.rowChart("#cccm .accomp",groupname)
+        .dimension(impros)
+        .group(improsGroup)
+        .width(350)
+        .height(200)
+        .renderLabel(true)
+        .renderTitle(true)
+        .colors(['#3182bd'])
+        .colorDomain([0,0])
+        .colorAccessor(function(d, i){return 1;})
+        .xAxis().ticks(4).tickFormat(d3.format("s"));
+       // .ordering(function (p) { return -p.value;});
+
+*/
+dc.dataCount("#count-info")
+    .dimension(xf)
+    .group(all);
+
 
   dc.renderAll(groupname);
 }
