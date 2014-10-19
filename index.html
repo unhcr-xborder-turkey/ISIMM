@@ -140,12 +140,11 @@
                           <h4>Site type</h4>
                         <p><small><i>Direct environment</i></small></p>
                         </div>
-                       <div  class="accomp" id="cccm" class="dc-chart">
-                          <h4>Accomodation</h4>
-                          <p><small><i>Occurence of shelter per type within the sites</i></small></p>
+                       <div  class="scorep" id="cccm" class="dc-chart">
+                          <h4>Composite Score</h4>
+                          <p><small><i><a href="https://github.com/unhcr-iraq/cccm-assessment/blob/master/data.R"  target="_blank">
+                              (water_access + water_quality + openelement + damage + mines+ hazards + fighting) ranked in 5 five classes</a>></i></small></p>
                         </div>
-                       <div  class="tentp" id="cccm" class="dc-chart"> </div>
-
                  <!--
                       -->
                 </div>
@@ -164,7 +163,7 @@
 
             <div class="row" id="cccm"   data-step="8" data-intro="Filter results by particpation organisation" data-position="left">
                     <h4>Participating Organisations</h4>
-                    <div  class="col-xs-8">
+                    <div  class="col-md-8">
                       <p> The CCCM clusters coordinates work on the ground from various organisations.<br >
                       This assessment has been made possible trough the contribution of various partners.</p>
 
@@ -202,11 +201,30 @@
                         </table>
 
                     </div>
-                    <div class="orgap" class="col-xs-4 dc-chart" >
+                    <div class="orgap" class="col-md-4 dc-chart" >
 
                       <p><small>Number of sites assessed per organisation</small></p>
                     </div>
             </div>
+
+
+<!--
+           <div class='row'>
+            <div class='col-md-12'>
+              <table class='table table-hover' id='dc-table-graph'>
+                <thead>
+                  <tr class='header'>
+                    <th>Governorates</th>
+                    <th>District</th>
+                    <th>Household (num)</th>
+                    <th>Individual(num)</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+           </div>
+-->
+
 
     </div>
 
@@ -538,28 +556,44 @@ function drawMarkerArea(data) {
 //Improvised_Shelter    Tent    Individual_mud_building Individual_mix_building Individual_concrete_building
 //  Shop    Apartment_block Under_construction
 
-  
+
  //    var accoms = xf.dimension(function(r) { return r.Improvised_Shelter; });
  //    var accomsGroup = regroup(accoms, ['Improvised_Shelter', 'Tent', 'Individual_mud_building', 'Individual_mix_building', 'Individual_concrete_building', 'Shop', 'Apartment_block Under_construction']);
 
- var impros = xf.dimension(function(d) { return d.Improvised_Shelter; });
- var improsGroup = impros.group().reduceSum(function (d) { return d.Improvised_Shelter; });
-  
-  dc.rowChart("#cccm .accomp",groupname)
-        .dimension(impros)
-        .group(improsGroup)
-        .width(200)
-        .height(15)
+ var scores = xf.dimension(function(d) { return d.scoreclass; });
+ var scoresGroup = scores.group().reduceCount(function (d) { return d.scoreclass; });
+
+  dc.rowChart("#cccm .scorep",groupname)
+        .dimension(scores)
+        .group(scoresGroup)
+        .width(220)
+        .height(205)
         .renderLabel(true)
         .renderTitle(true)
         .colors(['#3182bd'])
         .colorDomain([0,0])
         .colorAccessor(function(d, i){return 1;})
+        //.ordering(function (p) { return -p.value;})
         .xAxis().ticks(4).tickFormat(d3.format("s"));
-       // .ordering(function (p) { return -p.value;});
+/*        
+ var clusters = xf.dimension(function(d) { return d.cluster; });
+ var clustersGroup = accoms.group().reduceCount(function (d) { return d.cluster; });
+
+  dc.rowChart("#cccm .accomp",groupname)
+        .dimension(clusters)
+        .group(clustersGroup)
+        .width(220)
+        .height(205)
+        .renderLabel(true)
+        .renderTitle(true)
+        .colors(['#3182bd'])
+        .colorDomain([0,0])
+        .colorAccessor(function(d, i){return 1;})
+        //.ordering(function (p) { return -p.value;})
+        .xAxis().ticks(4).tickFormat(d3.format("s"));      
 
  var tents = xf.dimension(function(d) { return d.Tent; });
- var tentsGroup = impros.group().reduceSum(function (d) { return d.Tent; });  
+ var tentsGroup = impros.group().reduceSum(function (d) { return d.Tent; });
   dc.rowChart("#cccm .tentp",groupname)
         .dimension(tents)
         .group(tentsGroup)
@@ -574,8 +608,30 @@ function drawMarkerArea(data) {
        // .ordering(function (p) { return -p.value;});
 
 
-/*
+
 */
+
+  // Table
+  /*
+  dc.dataTable("#dc-table-graph",groupname)
+    .width(960).height(800)
+    .dimension(governorates)
+    .group(function(d) { return "Sites Table" })
+    .size(30)
+    .columns([
+      function(d) { return d.governorate; },
+      function(d) { return d.district; },
+      function(d) { return d.household; },
+      function(d) { return d.individual; }
+    ])
+    .sortBy(function(d){ return d.governorate; })
+    .order(d3.ascending)
+    .renderlet(function (table) { table.selectAll(".dc-table-group").classed("info", true); });
+*/
+
+
+
+
 
 
 //  dc.renderAll();
