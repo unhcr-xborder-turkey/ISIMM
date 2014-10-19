@@ -59,10 +59,10 @@
                 <div class="col-md-4">
                     <a class="btn btn btn-success" href="javascript:void(0);" onclick="javascript:introJs().start();">More info</a>
                 </div>
-                <div class="col-md-8"  data-step="1" data-intro="This displays the number of sites you filtered. Use the reset button to delete all your filters" data-position="right">   
+                <div class="col-md-8"  data-step="1" data-intro="This displays the number of sites you filtered. Use the reset button to delete all your filters" data-position="right">
                     <div id="count-info"  class="col-md-6">
                         <strong><span class="filter-count"></span></strong>sites selected out of <strong><span class="total-count"></span></strong> records.
-                    </div>                        
+                    </div>
                     <div class="col-md-2">
                         <!--
                         <a class="reset btn btn-primary btn-sm" id="reset" href="javascript:dc.filterAll();dc.redrawAll();">Reset All</a> -->
@@ -132,7 +132,7 @@
                         <p><small><i>Number of individual</i></small></p>
                     </div>
                 </div>
-                    
+
                 <div  class="col-md-2"  data-step="6" data-intro="Click on those chart to filter by site environment or shelter composition" data-position="right">
 
 
@@ -144,14 +144,15 @@
                           <h4>Accomodation</h4>
                           <p><small><i>Occurence of shelter per type within the sites</i></small></p>
                         </div>
+                       <div  class="tentp" id="cccm" class="dc-chart"> </div>
 
-                 <!--  
+                 <!--
                       -->
                 </div>
 
                 <div  class="col-md-4"  data-step="7" data-intro="Click on the map to filter by site" data-position="left">
-                    <h4>Map</h4>
-                      <p><small><i>Location of the sites. click on the map for more information</i></small></p>
+                    <h4>Map: Location of the sites</h4>
+                      <p><small><i>Zoom on the map to filter sites. click on the pinpoint for more information</i></small></p>
                     <div  class="map" id="cccm"  > </div>
                 </div>
 
@@ -236,20 +237,54 @@ var numberFormat = d3.format(",f");
 
 
 d3.tsv("data/dataviz.tsv", function(data) {
-  drawMarkerSelect(data);
+ // drawMarkerSelect(data);
+  drawMarkerArea(data);
 });
 
-function drawMarkerSelect(data) {
+
+function regroup(dim, cols) {
+    var _groupAll = dim.groupAll().reduce(
+        function(p, v) { // add
+            cols.forEach(function(c) {
+                p[c] += v[c];
+            });
+            return p;
+        },
+        function(p, v) { // remove
+            cols.forEach(function(c) {
+                p[c] -= v[c];
+            });
+            return p;
+        },
+        function() { // init
+            var p = {};
+            cols.forEach(function(c) {
+                p[c] = 0;
+            });
+            return p;
+        });
+    return {
+        all: function() {
+            // or _.pairs, anything to turn the object into an array
+            return d3.map(_groupAll.value()).entries();
+        }
+    };
+}
+
+
+
+function drawMarkerArea(data) {
+//function drawMarkerSelect(data) {
   var xf = crossfilter(data);
 
   var groupname = "marker-select";
-  
-  
+
+
   var all = xf.groupAll();
   dc.dataCount("#count-info",groupname)
         .dimension(xf)
         .group(all);
-  
+
   var facilities = xf.dimension(function(d) { return d.geo; });
   var facilitiesGroup = facilities.group().reduceCount();
 
@@ -261,8 +296,8 @@ function drawMarkerSelect(data) {
       .center([34.7503,44.5385])
       .zoom(6)
       .cluster(true)
+      .filterByArea(true)
       .popup();
-     // .filterByArea(true)
       //.clusterObject({ maxClusterRadius: 40, disableClusteringAtZoom:10,spiderfyOnMaxZoom: false,showCoverageOnHover: false})
 
 
@@ -497,17 +532,39 @@ function drawMarkerSelect(data) {
         .colorAccessor(function(d, i){return 1;})
         .xAxis().ticks(4).tickFormat(d3.format("s"));
 
-
+// it doesn't really matter what you index the dimension on,
+// because you won't be able to filter on this dimension
+// we just need something to call .groupAll on.
 //Improvised_Shelter    Tent    Individual_mud_building Individual_mix_building Individual_concrete_building
 //  Shop    Apartment_block Under_construction
 
-  var impros = xf.dimension(function(d) { return d.Improvised_Shelter; });
-  var improsGroup = impros.group().reduceCount();
+  
+ //    var accoms = xf.dimension(function(r) { return r.Improvised_Shelter; });
+ //    var accomsGroup = regroup(accoms, ['Improvised_Shelter', 'Tent', 'Individual_mud_building', 'Individual_mix_building', 'Individual_concrete_building', 'Shop', 'Apartment_block Under_construction']);
+
+ var impros = xf.dimension(function(d) { return d.Improvised_Shelter; });
+ var improsGroup = impros.group().reduceSum(function (d) { return d.Improvised_Shelter; });
+  
   dc.rowChart("#cccm .accomp",groupname)
         .dimension(impros)
         .group(improsGroup)
         .width(200)
-        .height(240)
+        .height(15)
+        .renderLabel(true)
+        .renderTitle(true)
+        .colors(['#3182bd'])
+        .colorDomain([0,0])
+        .colorAccessor(function(d, i){return 1;})
+        .xAxis().ticks(4).tickFormat(d3.format("s"));
+       // .ordering(function (p) { return -p.value;});
+
+ var tents = xf.dimension(function(d) { return d.Tent; });
+ var tentsGroup = impros.group().reduceSum(function (d) { return d.Tent; });  
+  dc.rowChart("#cccm .tentp",groupname)
+        .dimension(tents)
+        .group(tentsGroup)
+        .width(200)
+        .height(15)
         .renderLabel(true)
         .renderTitle(true)
         .colors(['#3182bd'])
@@ -517,17 +574,17 @@ function drawMarkerSelect(data) {
        // .ordering(function (p) { return -p.value;});
 
 
-
-/* 
+/*
 */
- 
 
-//  dc.renderAll(); 
+
+//  dc.renderAll();
   dc.renderAll(groupname);
 }
 
-
 </script>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
 
 
