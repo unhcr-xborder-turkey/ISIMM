@@ -44,7 +44,7 @@
                <img src="images/ccccm-siteasessment2.png" style="width: 100%"></a>
          </div>
 
-        <div class="col-xs-12">Explore the profile of the informal settlements hosting IDPs. You can download the data <a href="data/dataviz.tsv"  target="_blank">here</a></div>
+        <div class="col-xs-12">Explore the initial profile of the informal settlements hosting IDPs. You can download the data <a href="data/dataviz.tsv"  target="_blank">here</a></div>
 
             <div class="socialmedia" data-step="9" data-intro="Share this visualisation on twitter!" data-position="left">
                 <table>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="col-md-8"  data-step="1" data-intro="This displays the number of sites you filtered. Use the reset button to delete all your filters" data-position="right">
                     <div id="count-info"  class="col-md-6">
-                        <strong><span class="filter-count"></span></strong>sites selected out of <strong><span class="total-count"></span></strong> records.
+                        <p></p><strong><span class="filter-count"></span></strong> sites selected out of <strong><span class="total-count"></span></strong> records.</p>
                     </div>
                     <div class="col-md-2">
                         <!--
@@ -73,8 +73,8 @@
             <!--
              -->
             <div  class="row" id="cccm"  data-step="2" data-intro="Click on the pie chart below to filter the sites per condition type" data-position="left">
-                <h4>Filter on condition within the sites</h4>
-                <p><small><i>Based on site observation by enumerators</i></small></p>
+                <h4>Filter on conditions within the sites</h4>
+                <p><small><i>Based on site observations by enumerators</i></small></p>
                     <div class="col-md-2" >
                         <div class="openelementp" id="cccm" class="dc-chart" >
                           <p><small>Open to the elements</small></p>
@@ -117,19 +117,19 @@
                 <div class="col-md-2">
                     <div class="governoratep" class="col-xs-6 dc-chart" data-step="3" data-intro="Click on this bar chart to filter by governorate" data-position="right">
                       <h4>Governorates</h4>
-                      <p><small><i>Number of individual</i></small></p>
+                      <p><small><i>Number of individuals</i></small></p>
                     </div>
 
                     <div class="classp" class="col-xs-6 dc-chart" data-step="4" data-intro="Click on this bar chart to filter by site class size" data-position="right">
                       <h4>Site size</h4>
-                      <p><small><i>Number of site per size</i></small></p>
+                      <p><small><i>Number of sites per size</i></small></p>
                     </div>
                 </div>
 
                 <div  class="col-md-4"  data-step="5" data-intro="Click on this bar chart to filter by district" data-position="right">
                     <div class="districtp" class="dc-chart" >
                         <h4>Districts</h4>
-                        <p><small><i>Number of individual</i></small></p>
+                        <p><small><i>Number of individuals</i></small></p>
                     </div>
                 </div>
 
@@ -143,7 +143,7 @@
                        <div  class="scorep" id="cccm" class="dc-chart">
                           <h4>Composite Score</h4>
                           <p><small><i><a href="https://github.com/unhcr-iraq/cccm-assessment/blob/master/data.R"  target="_blank">
-                              (water_access + water_quality + openelement + damage + mines+ hazards + fighting) ranked in 5 five classes</a>></i></small></p>
+                              (water_access + water_quality + openelement + damage + mines+ hazards + fighting) ranked in 5 five classes.</a><br >Number of sites</i></small></p>
                         </div>
                  <!--
                       -->
@@ -310,7 +310,7 @@ function drawMarkerArea(data) {
       .dimension(facilities)
       .group(facilitiesGroup)
       .width(400)
-      .height(410)
+      .height(390)
       .center([34.7503,44.5385])
       .zoom(6)
       .cluster(true)
@@ -567,7 +567,7 @@ function drawMarkerArea(data) {
         .dimension(scores)
         .group(scoresGroup)
         .width(220)
-        .height(205)
+        .height(185)
         .renderLabel(true)
         .renderTitle(true)
         .colors(['#3182bd'])
