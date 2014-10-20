@@ -66,7 +66,7 @@
                     <div class="col-md-2">
                         <!--
                         <a class="reset btn btn-primary btn-sm" id="reset" href="javascript:dc.filterAll();dc.redrawAll();">Reset All</a> -->
-                        <a class="reset btn btn-primary btn-sm" id="reset" href="javascript:dc.filterAll();dc.redrawAll();">Reset All</a>
+                        <a class="reset btn btn-primary btn-sm" id="reset" href="#">Reset All</a>
                     </div>
                 </div>
             </div>
@@ -631,7 +631,11 @@ function drawMarkerArea(data) {
 
 
 
-
+$('#reset').on('click', function (){
+  dc.filterAll(groupname);
+  dc.redrawAll(groupname);
+  return false;
+})
 
 
 //  dc.renderAll();
