@@ -135,10 +135,15 @@ h1 {
     font:'open_sansregular', sans-serif;
 }
 
-h4 {
-    line-height: 0.6em;
+h1 {
+    line-height: 1em;
     color: #2a87c8;
     font:'open_sansregular', sans-serif;
+}
+
+
+number-display {
+    color: #2a87c8;
 }
 
 .fl {

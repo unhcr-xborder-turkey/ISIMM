@@ -44,7 +44,7 @@
                <img src="images/ccccm-siteasessment2.png" style="width: 100%"></a>
          </div>
 
-        <div class="col-xs-12">Explore the initial profile of the informal settlements hosting IDPs. You can download the data <a href="data/dataviz.tsv"  target="_blank">here</a></div>
+        <div class="col-xs-12">Explore the initial profile of the informal settlements hosting IDPs. You can download the data <a href="data/dataviz.tsv"  target="_blank">here</a> and access the full map <a href="https://ona.io/iraqcccm/forms/baseline/map" target="_blank" >here</a></div>
 
             <div class="socialmedia" data-step="9" data-intro="Share this visualisation on twitter!" data-position="left">
                 <table>
@@ -56,17 +56,19 @@
 
 
             <div class="row" >
-                <div class="col-md-4">
-                    <a class="btn btn btn-success" href="javascript:void(0);" onclick="javascript:introJs().start();">More info</a>
+                <div class="col-md-2">
+                    <a class="btn btn btn-success" href="javascript:void(0);" onclick="javascript:introJs().start();">How-To</a> 
+                    
                 </div>
-                <div class="col-md-8"  data-step="1" data-intro="This displays the number of sites you filtered. Use the reset button to delete all your filters" data-position="right">
-                    <div id="count-info"  class="col-md-6">
-                        <p></p><strong><span class="filter-count"></span></strong> sites selected out of <strong><span class="total-count"></span></strong> records.</p>
+                <div class="col-md-9"  data-step="1" data-intro="This displays the number of sites you filtered. Use the reset button to delete all your filters" data-position="right">
+                    <div id="count-info"  class="col-md-8">
+                        <p></p><strong><span class="filter-count"></span></strong> sites selected out of <strong><span class="total-count"></span></strong> records. <span id="totalind" class="number-display"></span> individuals.
+                         <span id="totalhou" class="number-display"></span> household, <span id="totalmen" class="number-display"></span> men, <span id="totalwom" class="number-display"></span> women, <span id="totalboy" class="number-display"></span> boys, <span  id="totalgirl" class="number-display"></span> girls.
+                         </p>
                     </div>
-                    <div class="col-md-2">
-                        <!--
-                        <a class="reset btn btn-primary btn-sm" id="reset" href="javascript:dc.filterAll();dc.redrawAll();">Reset All</a> -->
-                        <a class="reset btn btn-primary btn-sm" id="reset" href="#">Reset All</a>
+                    
+                    <div class="col-md-1">
+                       <a class="reset btn btn-primary btn-sm" id="reset" href="#">Reset All</a>     
                     </div>
                 </div>
             </div>
@@ -352,6 +354,58 @@ function drawMarkerArea(data) {
         .dimension(xf)
         .group(all);
 
+  var byIndividual = xf.dimension(function(d) { return d.individual; });
+  var byIndividualGroup = byIndividual.groupAll().reduceSum(function (d) { return d.individual; });
+
+   dc.numberDisplay("#totalind",groupname)
+       .valueAccessor(function(d){return +d})
+        .group(byIndividualGroup);
+
+
+  var byHousehold = xf.dimension(function(d) { return d.household; });
+  var byHouseholdGroup = byHousehold.groupAll().reduceSum(function (d) { return d.household; });
+   dc.numberDisplay("#totalhou",groupname)
+       .valueAccessor(function(d){return +d})
+        .group(byHouseholdGroup);
+        
+  var byMen = xf.dimension(function(d) { return d.men; });
+  var byMenGroup = byMen.groupAll().reduceSum(function (d) { return d.men; });
+   dc.numberDisplay("#totalmen",groupname)
+       .valueAccessor(function(d){return +d})
+        .group(byMenGroup);
+
+  var byWomen = xf.dimension(function(d) { return d.women; });
+  var byWomenGroup = byWomen.groupAll().reduceSum(function (d) { return d.women; });
+   dc.numberDisplay("#totalwom",groupname)
+       .valueAccessor(function(d){return +d})
+        .group(byWomenGroup);
+        
+  var byBoy = xf.dimension(function(d) { return d.boys; });
+  var byBoyGroup = byBoy.groupAll().reduceSum(function (d) { return d.boys; });
+   dc.numberDisplay("#totalboy",groupname)
+       .valueAccessor(function(d){return +d})
+        .group(byBoyGroup);
+
+  var byGirl = xf.dimension(function(d) { return d.girls; });
+  var byGirlGroup = byGirl.groupAll().reduceSum(function (d) { return d.girls; });
+
+   dc.numberDisplay("#totalgirl",groupname)
+       .valueAccessor(function(d){return +d})
+        .group(byGirlGroup);
+
+  /*
+  var byMen = xf.reduceSum(function (d) { return d.men; });
+  var byWomen  = xf.reduceSum(function (d) { return d.women; });
+  var byBoy =  xf.reduceSum(function (d) { return d.boys; });
+  var byGirl = xf.reduceSum(function (d) { return d.girls; });
+  */
+
+    /*    
+   dc.numberDisplay("#totalhous",groupname)
+        .dimension(byMen)
+        .group(all);
+    */
+    
   var facilities = xf.dimension(function(d) { return d.geo; });
   var facilitiesGroup = facilities.group().reduceCount();
 
@@ -561,21 +615,10 @@ function drawMarkerArea(data) {
 
   var districts = xf.dimension(function(d) { return d.district; });
   var districtsByIndividual = districts.group().reduceSum(function (d) { return d.individual; });
-  var districtsByMen = districts.group().reduceSum(function (d) { return d.men; });
-  var districtsByWomen  = districts.group().reduceSum(function (d) { return d.women; });
-  var districtsByBoy =  districts.group().reduceSum(function (d) { return d.boys; });
-  var districtsByGirl = districts.group().reduceSum(function (d) { return d.girls; });
-  //var districtsGroup = types.group().reduceCount();
 
   dc.rowChart("#cccm .districtp",groupname)
         .dimension(districts)
         .group(districtsByIndividual)
-       // .group(districtsByMen, "Men")
-       // .stack(districtsByWomen, "Women")
-       // .stack(districtsByBoy, "Boys")
-       // .stack(districtsByGirl, "Girls")
-       // .elasticX(true)
-      //  .data(function(group) { return group.top(10); })
         .width(350)
         .height(400)
         .renderLabel(true)
@@ -587,14 +630,10 @@ function drawMarkerArea(data) {
 
   var governorates = xf.dimension(function(d) { return d.governorate; });
   var governoratesByIndividual = governorates.group().reduceSum(function (d) { return d.individual; });
-  var governoratesByHousehold = governorates.group().reduceSum(function (d) { return d.household; });
-  //var governoratesGroup = types.group().reduceCount();
 
   dc.rowChart("#cccm .governoratep",groupname)
         .dimension(governorates)
         .group(governoratesByIndividual)
-       // .stack(governoratesByHousehold)
-       // .elasticX(true)
         .width(200)
         .height(150)
         .renderLabel(true)
