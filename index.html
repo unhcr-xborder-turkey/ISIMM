@@ -156,9 +156,9 @@
                 </div>
             </div>
             <div class="row" ></div>
-            
+
             <div  class="row" id="cccm" >
-                
+
                 <div class="col-md-3" >
                         <div class="householdnump" id="cccm" class="dc-chart" >
                               <h4>Individuals / Household</h4>
@@ -187,7 +187,7 @@
             </div>
 
 
-            
+
 
             <div class="row" id="cccm"   data-step="8" data-intro="Filter results by particpation organisation" data-position="left">
                     <h4>Participating Organisations</h4>
@@ -366,7 +366,7 @@ function drawMarkerArea(data) {
       .filterByArea(true)
     //  .featureKeyAccessor(function(feature) {return feature.properties.geo; })
       .renderPopup(true)
-    //  .popup(function(feature) { return feature.properties.sitear+" : "+feature.properties.neighbourhood; }); 
+    //  .popup(function(feature) { return feature.properties.sitear+" : "+feature.properties.neighbourhood; });
        //sitear	neighbourhood	organisat	governorate	district	photo	environment	phone	household	men	women	boys	girls	individual
       //.clusterObject({ maxClusterRadius: 40, disableClusteringAtZoom:10,spiderfyOnMaxZoom: false,showCoverageOnHover: false})
       .popup();
@@ -537,6 +537,7 @@ function drawMarkerArea(data) {
         .renderTitle(true)
         .colors(['#3182bd'])
         .colorDomain([0,0])
+        .elasticX(true)
         .colorAccessor(function(d, i){return 1;})
         .xAxis().ticks(4).tickFormat(d3.format("s"));
        // .ordering(function (p) { return -p.value;});
@@ -625,10 +626,11 @@ function drawMarkerArea(data) {
         .renderTitle(true)
         .colors(['#3182bd'])
         .colorDomain([0,0])
+        .elasticX(true)
         .colorAccessor(function(d, i){return 1;})
         //.ordering(function (p) { return -p.value;})
         .xAxis().ticks(4).tickFormat(d3.format("s"));
-/*        
+/*
 
 
  var clusters = xf.dimension(function(d) { return d.cluster; });
@@ -645,7 +647,7 @@ function drawMarkerArea(data) {
         .colorDomain([0,0])
         .colorAccessor(function(d, i){return 1;})
         //.ordering(function (p) { return -p.value;})
-        .xAxis().ticks(4).tickFormat(d3.format("s"));      
+        .xAxis().ticks(4).tickFormat(d3.format("s"));
 
 */
 
@@ -658,7 +660,7 @@ function drawMarkerArea(data) {
         .width(115)
         .height(115)
         .renderLabel(true)
-    //    .ordering(function (p) { return -p.value; })        
+    //    .ordering(function (p) { return -p.value; })
         .renderTitle(true);
 
 
@@ -671,8 +673,10 @@ function drawMarkerArea(data) {
         .group(unfinishedsGroup)
         .width(95)
         .height(95)
+        .colors(['#D9FAEF', /* no */
+                  '#F5C34E']) /* yes */
         .renderLabel(true)
-    //    .ordering(function (p) { return -p.value; })        
+    //    .ordering(function (p) { return -p.value; })
         .renderTitle(true);
 
  var opensites = xf.dimension(function(d) { return d.opensite; });
@@ -682,8 +686,10 @@ function drawMarkerArea(data) {
         .group(opensitesGroup)
         .width(95)
         .height(95)
+        .colors(['#D9FAEF', /* no */
+                  '#F5C34E']) /* yes */
         .renderLabel(true)
-    //    .ordering(function (p) { return -p.value; })        
+    //    .ordering(function (p) { return -p.value; })
         .renderTitle(true);
 
  var abandonneds = xf.dimension(function(d) { return d.abandonned; });
@@ -693,6 +699,8 @@ function drawMarkerArea(data) {
         .group(abandonnedsGroup)
         .width(95)
         .height(95)
+        .colors(['#D9FAEF', /* no */
+                  '#F5C34E']) /* yes */
         .renderLabel(true)
         .renderTitle(true)
         .ordering(function (p) { return -p.value; });
