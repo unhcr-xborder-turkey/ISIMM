@@ -259,7 +259,7 @@ d3.tsv("data/dataviz.tsv", function(data) {
   drawMarkerArea(data);
 });
 
-
+/*
 function regroup(dim, cols) {
     var _groupAll = dim.groupAll().reduce(
         function(p, v) { // add
@@ -288,11 +288,32 @@ function regroup(dim, cols) {
         }
     };
 }
-
+*/
 
 
 function drawMarkerArea(data) {
 //function drawMarkerSelect(data) {
+
+/*
+  data = [];
+    data.filter(function(d) {
+    return d.geo;
+    }).forEach(function(d) {
+       d.geo = d.geo.split(",");
+       d.sitear=+d.sitear;
+       d.neighbourhood=+d.neighbourhood;
+       d.marker = new L.Marker(new L.LatLng(d.geo[0], d.geo[1]),{
+                title: d.sitear,
+                icon: new L.icon({"iconUrl":d.iconUrl,iconSize:[32, 32],iconAnchor:[16,0]}),
+                clickable: true,
+                draggable: false
+            });
+       d.marker.data=d;
+    });
+    delete data;
+*/
+
+
   var xf = crossfilter(data);
 
   var groupname = "marker-select";
@@ -315,8 +336,12 @@ function drawMarkerArea(data) {
       .zoom(6)
       .cluster(true)
       .filterByArea(true)
+    //  .featureKeyAccessor(function(feature) {return feature.properties.geo; })
+      .renderPopup(true)
+     // .popup(function(d,feature) { return feature.properties.sitear+" : "+feature.properties.neighbourhood; }); 
+       //sitear	neighbourhood	organisat	governorate	district	photo	environment	phone	household	men	women	boys	girls	individual
       //.clusterObject({ maxClusterRadius: 40, disableClusteringAtZoom:10,spiderfyOnMaxZoom: false,showCoverageOnHover: false})
-      .popup();
+     // .popup();
 
 
 //water_access  water_quality   electric    openelement damage  hazards mines   fighting
