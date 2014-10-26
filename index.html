@@ -154,12 +154,40 @@
                       <p><small><i>Zoom on the map to filter sites. click on the pinpoint for more information</i></small></p>
                     <div  class="map" id="cccm"  > </div>
                 </div>
-
-
-
-
             </div>
             <div class="row" ></div>
+            
+            <div  class="row" id="cccm" >
+                
+                <div class="col-md-3" >
+                        <div class="householdnump" id="cccm" class="dc-chart" >
+                              <h4>Individuals / Household</h4>
+                              <p><small><i>Average number of individual per household per site</i></small></p>
+                        </div>
+                </div>
+                <div class="col-md-9" >
+                <h4>Filter on Shelter type within the sites</h4>
+                <p><small><i>Based on site observations by enumerators</i></small></p>
+                    <div class="col-md-3" >
+                        <div class="abandonnedp" id="cccm" class="dc-chart" >
+                          <p><small>Sites that include <strong>abandonned building</strong> (houses, appartment block or shop)</small></p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" >
+                        <div class="unfinishedp" id="cccm"  class="dc-chart" >
+                          <p><small>Sites that include <strong>unfinished building</strong>(building under construction)</small></p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" >
+                        <div class="opensitep" id="cccm" class="dc-chart" >
+                          <p><small>Sites that include <strong>open accomodation</strong> (tents or any improvised shelter)</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            
 
             <div class="row" id="cccm"   data-step="8" data-intro="Filter results by particpation organisation" data-position="left">
                     <h4>Participating Organisations</h4>
@@ -601,6 +629,8 @@ function drawMarkerArea(data) {
         //.ordering(function (p) { return -p.value;})
         .xAxis().ticks(4).tickFormat(d3.format("s"));
 /*        
+
+
  var clusters = xf.dimension(function(d) { return d.cluster; });
  var clustersGroup = accoms.group().reduceCount(function (d) { return d.cluster; });
 
@@ -617,24 +647,58 @@ function drawMarkerArea(data) {
         //.ordering(function (p) { return -p.value;})
         .xAxis().ticks(4).tickFormat(d3.format("s"));      
 
- var tents = xf.dimension(function(d) { return d.Tent; });
- var tentsGroup = impros.group().reduceSum(function (d) { return d.Tent; });
-  dc.rowChart("#cccm .tentp",groupname)
-        .dimension(tents)
-        .group(tentsGroup)
-        .width(200)
-        .height(15)
+*/
+
+
+ var householdnums = xf.dimension(function(d) { return d.householdnum; });
+ var householdnumsGroup = householdnums.group().reduceCount();
+  dc.pieChart("#cccm .householdnump",groupname)
+        .dimension(householdnums)
+        .group(householdnumsGroup)
+        .width(115)
+        .height(115)
+        .renderLabel(true)
+    //    .ordering(function (p) { return -p.value; })        
+        .renderTitle(true);
+
+
+//"opensite","abandonned","unfinished",
+
+ var unfinisheds = xf.dimension(function(d) { return d.unfinished; });
+ var unfinishedsGroup = unfinisheds.group().reduceCount();
+  dc.pieChart("#cccm .unfinishedp",groupname)
+        .dimension(unfinisheds)
+        .group(unfinishedsGroup)
+        .width(95)
+        .height(95)
+        .renderLabel(true)
+    //    .ordering(function (p) { return -p.value; })        
+        .renderTitle(true);
+
+ var opensites = xf.dimension(function(d) { return d.opensite; });
+ var opensitesGroup = opensites.group().reduceCount();
+  dc.pieChart("#cccm .opensitep",groupname)
+        .dimension(opensites)
+        .group(opensitesGroup)
+        .width(95)
+        .height(95)
+        .renderLabel(true)
+    //    .ordering(function (p) { return -p.value; })        
+        .renderTitle(true);
+
+ var abandonneds = xf.dimension(function(d) { return d.abandonned; });
+ var abandonnedsGroup = abandonneds.group().reduceCount();
+  dc.pieChart("#cccm .abandonnedp",groupname)
+        .dimension(abandonneds)
+        .group(abandonnedsGroup)
+        .width(95)
+        .height(95)
         .renderLabel(true)
         .renderTitle(true)
-        .colors(['#3182bd'])
-        .colorDomain([0,0])
-        .colorAccessor(function(d, i){return 1;})
-        .xAxis().ticks(4).tickFormat(d3.format("s"));
-       // .ordering(function (p) { return -p.value;});
+        .ordering(function (p) { return -p.value; });
 
 
 
-*/
 
   // Table
   /*
