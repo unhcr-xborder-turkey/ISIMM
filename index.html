@@ -338,10 +338,10 @@ function drawMarkerArea(data) {
       .filterByArea(true)
     //  .featureKeyAccessor(function(feature) {return feature.properties.geo; })
       .renderPopup(true)
-     // .popup(function(d,feature) { return feature.properties.sitear+" : "+feature.properties.neighbourhood; }); 
+    //  .popup(function(feature) { return feature.properties.sitear+" : "+feature.properties.neighbourhood; }); 
        //sitear	neighbourhood	organisat	governorate	district	photo	environment	phone	household	men	women	boys	girls	individual
       //.clusterObject({ maxClusterRadius: 40, disableClusteringAtZoom:10,spiderfyOnMaxZoom: false,showCoverageOnHover: false})
-     // .popup();
+      .popup();
 
 
 //water_access  water_quality   electric    openelement damage  hazards mines   fighting
