@@ -58,3 +58,7 @@ dc.leafletChoroplethChart(parent,chartGroup)
   .renderPopup(true)      - set if popups should be shown; Default: true
   .brushOn(true)          - if the map would select datapoints; Default: true
 ```
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/unhcr-iraq/site-assessment/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
