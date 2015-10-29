@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" name="viewport">
+    <meta name="author" content="Edouard Legoupil">
+    <title>Site Assessment - CCCM Cluster Iraq</title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <meta itemprop="name" content="Site Assessment - CCCM Cluster Iraq"/>
+    <meta itemprop="description" content="Site Assessment - CCCM Cluster Iraq"/>
+
+    <meta property="og:title" content="Site Assessment Methodology - CCCM Cluster Iraq">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://unhcr-iraq.github.io/Site-Assessment/">
+    <meta property="og:image" content="http://unhcr-iraq.github.io/Site-Assessment/SiteAssessment.jpg">
+    <meta property="og:site_name" content="Site Assessment - CCCM Cluster Iraq">
+    <meta property="og:description" content="Site Assessment - CCCM Cluster Iraq">
+
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/dc.css">
+    <link rel="stylesheet" type="text/css" href="css/dashboard.css">
+
+
+</head>
+
+<body>
+
+
+    <div style="display: block;" class="container" id="dashboard">
+
+        <div class="col-xs-12">
+            <a href="https://www.humanitarianresponse.info/operations/iraq/camp-coordination-management" target="_blank">
+               <img src="images/ccccm-siteasessment2.png" style="width: 100%"></a>
+         </div>
+
+        <div class="col-xs-12">
+
+             <h2>CCCM Assessment methodology</h2>
+                 <p>Inform humanitarian response and strategy for IDPs currently staying in Communal settings</p>
+                 <p>Provide actionable information to strategize interventions in every district:<ul>
+                    <li>Expansion of existing sites</li>
+                    <li>Upgrade of existing sites</li>
+                    <li>Relocation of IDPs from certain sites to other locations</li>
+                    </ul> 
+                 </p>       
+        
+            <h2>Specific Objectives</h2>
+            <ul>
+                <li>Informing humanitarian shelter interventions based on legal and physical status of the site</li>
+                <li>Trigger advocacy to improve access to services and living conditions at the site-level, including information campaign and relocation plan</li>
+                <li>Focus on existing living conditions and intention rather than on profile or needs</li>
+            </ul></p> 
+            
+            <h2>Methodology</h2>
+                 <p>The asessment is done through Direct Observation and Key informant interviews with IDP representatives</p>
+                <p>A <stong>baseline mapping</stong> will be conducted at least every 3 months in order to covering quickly all sites with more than 5 household per sites in the categories:
+                    communal setting within unfinished building, improvised shelters, etc.</p>
+                <p>A <stong>Rapid Site Asessment</stong> consists in a longer form used to define intervention prioritization per sites</p>
+                <ul>
+                    <li>Informing humanitarian shelter interventions based on legal and physical status of the site</li>
+                    <li>Trigger advocacy to improve access to services and living conditions at the site-level, including information campaign and relocation plan</li>
+                    <li>Focus on existing living conditions and intention rather than on profile or needs</li>
+                </ul></p>
+                    
+            <h2>Data collection approach</h2>
+                 <p>Data will be collected on Android smartphones (or tablet) based on the Open Data Kit (ODK) platform.</p>
+                  <p>A requirement for the devices is to have an Android Operating System, a built-in GPS chipset, a camera and WIFI connection. 
+                  Procuring SIM Card or DATA PLAN is not needed as enumerator will store their information on their phone and sent it to
+                  the server from the office using the office wifi connection. GPS localization can work without data plan.</p>
+
+                <p>The application that need to be installed on the phone is: <a href="https://opendatakit.org">OpenDataKit</a>.
+                <p> Enumerator training material are accessible <a href="https://www.dropbox.com/sh/lga78xhl9cf9ugn/AAD0CLr-XTocXt77J8hLZ1kQa/Assessment/Rapid_Site-Asessment/CCCM-IRapidSiteAsessment-Training.pptx?dl=0">
+                    here</a>For the installation of the application on the devices, there are 3 options:<ul>
+                <li>Staff use their personal google account and install the app directly
+                from the <a href="https://play.google.com/store/apps/details?id=org.odk.collect.android">play store</a></li>
+                <li>a generic google account is created and configured on all phones to
+                access the play store at the <a href="https://play.google.com/store/apps/details?id=org.odk.collect.android">play store</a>.</li>
+                <li>Through the inbuilt browser, staff download and install directly the
+                app from <a href="https://opendatakit.org/download/4489/">ODK website</a>.</li>
+                </ul></p>
+                
+                <p>Data will be consolidated on an <a href="https://ona.io/iraqcccm">ONA server</a>. The forms used for each of the phase are designed using
+                 the <a href="http://xlsform.org/">xlsform format</a>.
+            
+            
+            <h2>Phase 1: Baseline Mapping</h2>
+            <p>The first part of the aessment is aiming at collecting the information necessary to plan the second phase of the assessment</p>
+            <p>The baseline form can be accessed <a  href="https://ona.io/iraqcccm/forms/baseline/form.xls">here</a></p>. 
+            <ul>
+                <li>Contact details of Community representative</li>
+                <li>Demographic breakdown with boys, men, women & girls</li>
+                <li>Precise coordinates</li>
+                <li>Pictures</li>
+                <li>Observation of risk and shelter type</li>
+            </ul>
+        
+            <h2>Phase 2: Baseline Analysis</h2>
+            <p></p>.
+            <p> Compilation of results are performed in an <a  href="https://github.com/unhcr-iraq/cccm-assessment">analysis script</a>></p>
+            <p> The main challenge is define some criticality index in order to priorities the sites for the assessment. 
+            No clear statistical pattern through <a ref="https://github.com/unhcr-iraq/cccm-assessment/blob/master/data.R#L108-L128">multivariate anlysis</a>.
+            As  a result, the best option is to define of a <i>Criticallity Composite index</i>. The index has been generated through the addition and ranking in firve classes of the risk assessment on the following dimnension:
+            <ul>
+                <li>Limited access for water</li>
+                <li>Poor quality drinking water</li>
+                <li>Open to the elements</li>
+                <li>Damage to the building</li>
+                <li>Risk of unexploded mines</li>
+                <li>Falling hazards</li
+                <li>Presence of fighting</li>
+            </ul></p>
+            
+            <p> The output of this phase are:</p>
+            <ul>
+                <li><a href="index.html"  target="_blank">A datavisualisation of the result </a></li>
+                <li><a href="https://github.com/unhcr-iraq/cccm-assessment/blob/master/out/pcode.csv">P-code of the locations</a></li>
+                <li>A grouping of sites into operational areas that cover each more or less 500 IDPs</li>
+                <li><a href="https://github.com/unhcr-iraq/cccm-assessment/blob/master/out/area.csv">List of operational areas with their caracteristic</a></li>
+            </ul>
+
+            
+            <h2>Phase 3: Multi-Sector Site Assessment</h2>
+            <p>The assessment form can be accessed <a  href="https://ona.io/iraqcccm/forms/rapidsiteassess/form.xls">here</a></p>. 
+            
+        
+            
+
+        </div>
+    
+    </div>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+</body>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55906613-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</html>

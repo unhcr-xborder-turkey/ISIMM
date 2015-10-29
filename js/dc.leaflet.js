@@ -7,8 +7,22 @@ dc.leafletChart = function(_chart) {
   var _defaultCenter=false;
   var _defaultZoom=false;
 
+/*
   var _tiles=function(map) {
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+  }
+
+  var _tiles=function(map) {
+    L.tileLayer('http://a.tiles.mapbox.com/v3/unhcr.jg02lf55/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+  }
+*/
+
+  var _tiles=function(map) {
+    L.tileLayer('http://otile2.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
   }
@@ -17,7 +31,7 @@ dc.leafletChart = function(_chart) {
     _map = L.map(_chart.root().node(),_mapOptions);
     if (_defaultCenter && _defaultZoom)
       _map.setView(_chart.toLocArray(_defaultCenter), _defaultZoom);
-      
+
     _chart.tiles()(_map);
 
     _chart._postRender();
@@ -62,7 +76,7 @@ dc.leafletChart = function(_chart) {
       // expects '11.111,1.111'
       value = value.split(",");
     }
-    // else expects [11.111,1.111] 
+    // else expects [11.111,1.111]
     return value;
   }
 
@@ -100,12 +114,12 @@ dc.leafletMarkerChart = function(parent, chartGroup) {
 
   var _marker = function(d,map) {
     var marker = new L.Marker(_chart.toLocArray(_chart.locationAccessor()(d)),{
-  		title: _chart.renderTitle() ? _chart.title()(d) : '',
-  		alt: _chart.renderTitle() ? _chart.title()(d) : '',
-		  icon: _icon(),
-		  clickable: _chart.renderPopup() || (_chart.brushOn() && !_filterByArea),
-   		draggable: false
-		});
+        title: _chart.renderTitle() ? _chart.title()(d) : '',
+        alt: _chart.renderTitle() ? _chart.title()(d) : '',
+          icon: _icon(),
+          clickable: _chart.renderPopup() || (_chart.brushOn() && !_filterByArea),
+        draggable: false
+        });
     return marker;
   }
 
@@ -121,7 +135,7 @@ dc.leafletMarkerChart = function(parent, chartGroup) {
     if (_chart.brushOn()) {
       if (_filterByArea)
         _chart.filterHandler(doFilterByArea);
-     
+
       _chart.map().on('zoomend moveend', zoomFilter, this );
       if (!_filterByArea)
         _chart.map().on('click', zoomFilter, this );
@@ -145,7 +159,7 @@ dc.leafletMarkerChart = function(parent, chartGroup) {
 
     if (_rebuildMarkers) {
       _markerList=[];
-    } 
+    }
     _layerGroup.clearLayers();
 
     var addList=[];
@@ -220,7 +234,7 @@ dc.leafletMarkerChart = function(parent, chartGroup) {
     _brushOn = _;
     return _chart;
   }
-  
+
   _chart.filterByArea = function(_) {
     if (!arguments.length) return _filterByArea;
     _filterByArea = _;
@@ -235,28 +249,28 @@ dc.leafletMarkerChart = function(parent, chartGroup) {
     var marker = _marker(v);
     marker.key = k;
     if (_chart.renderPopup())
-      marker.bindPopup(_chart.popup()(v,marker));	    
+      marker.bindPopup(_chart.popup()(v,marker));
     if (_chart.brushOn() && !_filterByArea)
       marker.on("click",selectFilter);
     _markerList[k]=marker;
     return marker;
   }
-  
+
   var zoomStart = function(e) {
     _zooming=true;
   }
 
   var zoomFilter = function(e) {
-	  if (e.type=="moveend" && (_zooming || e.hard))
-		  return;
+      if (e.type=="moveend" && (_zooming || e.hard))
+          return;
     _zooming=false;
 
     if (_filterByArea) {
       var filter;
       if (_chart.map().getCenter().equals(_chart.center()) && _chart.map().getZoom()==_chart.zoom())
-		    filter = null;
-	    else
-		    filter = _chart.map().getBounds();
+            filter = null;
+        else
+            filter = _chart.map().getBounds();
       dc.events.trigger(function () {
         _chart.filter(null);
         if (filter) {
@@ -266,8 +280,8 @@ dc.leafletMarkerChart = function(parent, chartGroup) {
         }
         dc.redrawAll(_chart.chartGroup());
       });
-    } else if (_chart.filter() && (e.type=="click" || 
-        (_chart.filter() in _markerList && 
+    } else if (_chart.filter() && (e.type=="click" ||
+        (_chart.filter() in _markerList &&
         !_chart.map().getBounds().contains(_markerList[_chart.filter()].getLatLng())))) {
       dc.events.trigger(function () {
           _chart.filter(null);
@@ -280,13 +294,13 @@ dc.leafletMarkerChart = function(parent, chartGroup) {
 
   var doFilterByArea = function(dimension, filters) {
     _chart.dimension().filter(null);
-	  if (filters && filters.length>0) {
-		  _chart.dimension().filterFunction(function(d) {
+      if (filters && filters.length>0) {
+          _chart.dimension().filterFunction(function(d) {
         if (!(d in _markerList))
           return false;
         var locO = _markerList[d].getLatLng();
         return locO && filters[0].contains(locO);
-		  });
+          });
       if (!_innerFilter && _chart.map().getBounds().toString!=filters[0].toString())
         _chart.map().fitBounds(filters[0])
     }
@@ -312,7 +326,7 @@ dc.leafletMarkerChart = function(parent, chartGroup) {
 
 dc.leafletChoroplethChart = function(parent, chartGroup) {
   var _chart = dc.colorChart(dc.leafletChart({}));
-  
+
   var _geojsonLayer = false;
   var _dataMap = [];
 
@@ -320,10 +334,10 @@ dc.leafletChoroplethChart = function(parent, chartGroup) {
   var _renderPopup = true;
   var _brushOn = true;
   var _featureOptions = {
-    'fillColor':'black', 
-    'color':'gray', 
-    'opacity':0.4, 
-    'fillOpacity':0.6, 
+    'fillColor':'black',
+    'color':'gray',
+    'opacity':0.4,
+    'fillOpacity':0.6,
     'weight':1
   };
 
@@ -346,14 +360,14 @@ dc.leafletChoroplethChart = function(parent, chartGroup) {
     }
     return options;
   };
-  
+
   var _popup = function(d,feature) {
     return _chart.title()(d);
   }
 
   _chart._postRender = function() {
     _geojsonLayer=L.geoJson(_chart.geojson(),{
-		  style: _chart.featureStyle(),
+          style: _chart.featureStyle(),
       onEachFeature: processFeatures
     });
     _chart.map().addLayer(_geojsonLayer);
@@ -414,9 +428,9 @@ dc.leafletChoroplethChart = function(parent, chartGroup) {
     var v = _dataMap[_chart.featureKeyAccessor()(feature)];
     if (v && v.d) {
       layer.key=v.d.key;
-  	  if (_chart.renderPopup())
-			  layer.bindPopup(_chart.popup()(v.d,feature));
-      if (_chart.brushOn()) 
+      if (_chart.renderPopup())
+              layer.bindPopup(_chart.popup()(v.d,feature));
+      if (_chart.brushOn())
         layer.on("click",selectFilter);
     }
   }
