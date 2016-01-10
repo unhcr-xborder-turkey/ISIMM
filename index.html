@@ -44,7 +44,7 @@
                <img src="images/ccccm-siteasessment2.png" style="width: 100%"></a>
          </div>
 
-        <div class="col-xs-12">Explore the initial profile of the informal settlements hosting IDPs. You can download the data <a href="data/dataviz.tsv"  target="_blank">here</a> and access the full map <a href="https://ona.io/iraqcccm/forms/baseline/map" target="_blank" >here</a></div>
+        <div class="col-xs-12">Explore the initial profile of the informal settlements hosting IDPs. You can download the data <a href="data/dataviz.tsv"  target="_blank">here</a> and access the full map <a href="https://ona.io/iraqcccm/forms/baseline/map" target="_blank" >here</a>
 
             <div class="socialmedia" data-step="9" data-intro="Share this visualisation on twitter!" data-position="left">
                 <table>
@@ -84,7 +84,7 @@
                     </div>
                     <div class="col-md-2" >
                         <div class="waterp" id="cccm"  class="dc-chart" >
-                          <p><small>Limited access for water</small></p>
+                          <p><small>Limited access to water</small></p>
                         </div>
                     </div>
                     <div class="col-md-2" >
@@ -99,7 +99,7 @@
                     </div>
                     <div class="col-md-2" >
                         <div class="electricp" id="cccm" class="dc-chart" >
-                          <p><small>Limited access for electric</small></p>
+                          <p><small>Limited access to electricity</small></p>
                         </div>
                     </div>
                     <div class="col-md-2" >
@@ -124,7 +124,7 @@
 
                     <div class="classp" class="col-xs-6 dc-chart" data-step="4" data-intro="Click on this bar chart to filter by site class size" data-position="right">
                       <h4>Site size</h4>
-                      <p><small><i>Number of sites per size</i></small></p>
+                      <p><small><i>Number of sites by size</i></small></p>
                     </div>
                 </div>
 
@@ -135,7 +135,7 @@
                     </div>
                 </div>
 
-                <div  class="col-md-2"  data-step="6" data-intro="Click on those chart to filter by site environment or shelter composition" data-position="right">
+                <div  class="col-md-2"  data-step="6" data-intro="Click on these chart to filter by site environment or shelter composition" data-position="right">
 
 
                         <div class="environmentp" id="cccm" class="dc-chart" >
@@ -163,26 +163,21 @@
 
                 <div class="col-md-3" >
                         <div class="householdnump" id="cccm" class="dc-chart" >
-                              <h4>Individuals / Household</h4>
-                              <p><small><i>Average number of individual per household per site</i></small></p>
+                              <h4>Individuals / Households</h4>
+                              <p><small><i>Average number of individuals per household per site</i></small></p>
                         </div>
                 </div>
                 <div class="col-md-9" >
                 <h4>Filter on Shelter type within the sites</h4>
-                <p><small><i>Based on site observations by enumerators</i></small></p>
-                    <div class="col-md-3" >
-                        <div class="abandonnedp" id="cccm" class="dc-chart" >
-                          <p><small>Sites that include <strong>abandonned building</strong> (houses, appartment block or shop)</small></p>
-                        </div>
-                    </div>
+                <p><small><i>Based on site observation by enumerators</i></small></p>
                     <div class="col-md-3" >
                         <div class="unfinishedp" id="cccm"  class="dc-chart" >
-                          <p><small>Sites that include <strong>unfinished building</strong>(building under construction)</small></p>
+                          <p><small>Sites that include <strong>unfinished buildings</strong> (buildings under construction)</small></p>
                         </div>
                     </div>
                     <div class="col-md-3" >
                         <div class="opensitep" id="cccm" class="dc-chart" >
-                          <p><small>Sites that include <strong>open accomodation</strong> (tents or any improvised shelter)</small></p>
+                          <p><small>Sites that include <strong>open accommodations</strong> (tents or any improvised shelter)</small></p>
                         </div>
                     </div>
                 </div>
@@ -194,8 +189,8 @@
             <div class="row" id="cccm"   data-step="8" data-intro="Filter results by particpation organisation" data-position="left">
                     <h4>Participating Organisations</h4>
                     <div  class="col-md-8">
-                      <p> The CCCM clusters coordinates work on the ground from various organisations.<br >
-                      This assessment has been made possible trough the contribution of various partners.</p>
+                      <p> The CCCM cluster coordinates work on the ground from various organisations.<br >
+                      This assessment has been made possible through the contribution of various partners.</p>
 
                         <table>
                             <tbody>
@@ -233,7 +228,7 @@
                     </div>
                     <div class="orgap" class="col-md-4 dc-chart" >
 
-                      <p><small>Number of sites assessed per organisation</small></p>
+                      <p><small>Number of sites assessed per organisation (based on phase 1 assessment, new sites assessed by REACH)</small></p>
                     </div>
             </div>
 
@@ -695,11 +690,13 @@ function drawMarkerArea(data) {
 
  var householdnums = xf.dimension(function(d) { return d.householdnum; });
  var householdnumsGroup = householdnums.group().reduceCount();
+  
   dc.pieChart("#cccm .householdnump",groupname)
         .dimension(householdnums)
         .group(householdnumsGroup)
         .width(115)
         .height(115)
+		.height(115)
         .renderLabel(true)
     //    .ordering(function (p) { return -p.value; })
         .renderTitle(true);
