@@ -7,26 +7,26 @@ dc.leafletChart = function(_chart) {
   var _defaultCenter=false;
   var _defaultZoom=false;
 
-/*
+
   var _tiles=function(map) {
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
   }
-
+/*
   var _tiles=function(map) {
     L.tileLayer('http://a.tiles.mapbox.com/v3/unhcr.jg02lf55/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
   }
-*/
+
 
   var _tiles=function(map) {
     L.tileLayer('http://otile2.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
   }
-
+*/
   _chart.doRender = function() {
     _map = L.map(_chart.root().node(),_mapOptions);
     if (_defaultCenter && _defaultZoom)
