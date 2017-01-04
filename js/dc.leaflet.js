@@ -8,11 +8,15 @@ dc.leafletChart = function(_chart) {
   var _defaultZoom=false;
 
 
-  var _tiles=function(map) {
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-  }
+    var _tiles = function (map) {
+        L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.{ext}', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+	subdomains: 'abcd',
+	minZoom: 0,
+	maxZoom: 18,
+	ext: 'png'
+        }).addTo(map);
+    }
 /*
   var _tiles=function(map) {
     L.tileLayer('http://a.tiles.mapbox.com/v3/unhcr.jg02lf55/{z}/{x}/{y}.png', {

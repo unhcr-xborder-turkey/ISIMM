@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" name="viewport">
     <meta name="author" content="Edouard Legoupil">
-    <title>Site Assessment - CCCM Cluster Iraq</title>
+    <title>ISIMM - CCCM Cluster Syria (Northern Governorates)</title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon" />
 
     <meta itemprop="name" content="Site Assessment - CCCM Cluster Iraq"/>
@@ -41,7 +41,7 @@
 
         <div class="col-xs-12">
             <a href="https://www.humanitarianresponse.info/operations/iraq/camp-coordination-management" target="_blank">
-               <img src="images/ccccm-siteasessment2.png" style="width: 100%"></a>
+               <img src="images/ISIMM.png" style="width: 100%"></a>
          </div>
 
         <div class="col-xs-12">Explore the initial profile of the informal settlements hosting IDPs. You can download the data <a href="data/dataviz.tsv"  target="_blank">here</a> and access the full map <a href="https://ona.io/iraqcccm/forms/baseline/map" target="_blank" >here</a>
@@ -79,32 +79,32 @@
                 <p><small><i>Based on site observations by enumerators</i></small></p>
                     <div class="col-md-2" >
                         <div class="openelementp" id="cccm" class="dc-chart" >
-                          <p><small>Open to the elements</small></p>
+                          <p><small>Shelter</small></p>
                         </div>
                     </div>
                     <div class="col-md-2" >
                         <div class="waterp" id="cccm"  class="dc-chart" >
-                          <p><small>Limited access to water</small></p>
+                          <p><small>Water</small></p>
                         </div>
                     </div>
                     <div class="col-md-2" >
                         <div class="waterqp" id="cccm" class="dc-chart" >
-                          <p><small>Poor quality drinking water</small></p>
+                          <p><small>Sanitation</small></p>
                         </div>
                     </div>
                     <div class="col-md-2" >
                         <div class="hazardsp" id="cccm" class="dc-chart" >
-                          <p><small>Falling hazards</small></p>
+                          <p><small>Waste Removal</small></p>
                         </div>
                     </div>
                     <div class="col-md-2" >
                         <div class="electricp" id="cccm" class="dc-chart" >
-                          <p><small>Limited access to electricity</small></p>
+                          <p><small>NFI</small></p>
                         </div>
                     </div>
                     <div class="col-md-2" >
                         <div class="minesp" id="cccm" class="dc-chart" >
-                          <p><small>Risk of unexploded mines</small></p>
+                          <p><small>Food</small></p>
                         </div>
                     </div>
             </div>
@@ -142,12 +142,12 @@
                           <h4>Site type</h4>
                         <p><small><i>Direct environment</i></small></p>
                         </div>
-                       <div  class="scorep" id="cccm" class="dc-chart">
+                       <!--  <div  class="scorep" id="cccm" class="dc-chart">
                           <h4>Composite Score</h4>
                           <p><small><i><a href="https://github.com/unhcr-iraq/cccm-assessment/blob/master/data.R"  target="_blank">
                               (water_access + water_quality + openelement + damage + mines+ hazards + fighting) ranked in 5 five classes.</a><br >Number of sites</i></small></p>
                         </div>
-                 <!--
+               
                       -->
                 </div>
 
@@ -159,14 +159,14 @@
             </div>
             <div class="row" ></div>
 
-            <div  class="row" id="cccm" >
+ <!--             <div  class="row" id="cccm" >
 
                 <div class="col-md-3" >
                         <div class="householdnump" id="cccm" class="dc-chart" >
                               <h4>Individuals / Households</h4>
                               <p><small><i>Average number of individuals per household per site</i></small></p>
                         </div>
-                </div>
+              </div>
                 <div class="col-md-9" >
                 <h4>Filter on Shelter type within the sites</h4>
                 <p><small><i>Based on site observation by enumerators</i></small></p>
@@ -232,7 +232,7 @@
                     </div>
             </div>
 
-
+-->
 <!--
            <div class='row'>
             <div class='col-md-12'>
@@ -279,7 +279,7 @@ var numberFormat = d3.format(",f");
 
 
 
-d3.tsv("data/dataviz.tsv", function(data) {
+d3.csv("data/ISIMM2.csv", function(data) {
  // drawMarkerSelect(data);
   drawMarkerArea(data);
 });
@@ -409,8 +409,8 @@ function drawMarkerArea(data) {
       .group(facilitiesGroup)
       .width(400)
       .height(390)
-      .center([34.7503,44.5385])
-      .zoom(6)
+      .center([36.2503,37.4385])
+      .zoom(7)
       .cluster(true)
       .filterByArea(true)
     //  .featureKeyAccessor(function(feature) {return feature.properties.geo; })
@@ -423,7 +423,7 @@ function drawMarkerArea(data) {
 
 //water_access  water_quality   electric    openelement damage  hazards mines   fighting
 
-  var waters = xf.dimension(function(d) { return d.water_access; });
+  var waters = xf.dimension(function(d) { return d.water_cat; });
   var watersGroup = waters.group().reduceCount();
   dc.pieChart("#cccm .waterp",groupname)
         .dimension(waters)
@@ -441,7 +441,7 @@ function drawMarkerArea(data) {
     //   .ordering(function (p) { return -p.value; });
 
 
-  var waterqs = xf.dimension(function(d) { return d.water_quality; });
+  var waterqs = xf.dimension(function(d) { return d.sanitation_cat; });
   var waterqsGroup = waterqs.group().reduceCount();
   dc.pieChart("#cccm .waterqp",groupname)
         .dimension(waterqs)
@@ -459,7 +459,7 @@ function drawMarkerArea(data) {
     //   .ordering(function (p) { return -p.value; });
 
 
-  var electrics = xf.dimension(function(d) { return d.electric; });
+  var electrics = xf.dimension(function(d) { return d.NFI_cat; });
   var electricsGroup = electrics.group().reduceCount();
   dc.pieChart("#cccm .electricp",groupname)
         .dimension(electrics)
@@ -477,7 +477,7 @@ function drawMarkerArea(data) {
      //  .ordering(function (p) { return -p.value; });
 
 
-  var openelements = xf.dimension(function(d) { return d.openelement; });
+  var openelements = xf.dimension(function(d) { return d.shelter_cat; });
   var openelementsGroup = openelements.group().reduceCount();
   dc.pieChart("#cccm .openelementp",groupname)
         .dimension(openelements)
@@ -511,7 +511,7 @@ function drawMarkerArea(data) {
          .colorDomain([0,4]);
      //   .ordering(function (p) { return -p.value; });
 
-  var hazardss = xf.dimension(function(d) { return d.hazards; });
+  var hazardss = xf.dimension(function(d) { return d.waste_cat; });
   var hazardssGroup = hazardss.group().reduceCount();
   dc.pieChart("#cccm .hazardsp",groupname)
         .dimension(hazardss)
@@ -528,7 +528,7 @@ function drawMarkerArea(data) {
          .colorDomain([0,4]);
     //    .ordering(function (p) { return -p.value; });
 
-  var miness = xf.dimension(function(d) { return d.mines; });
+  var miness = xf.dimension(function(d) { return d.NFI_cat; });
   var minessGroup = miness.group().reduceCount();
   dc.pieChart("#cccm .minesp",groupname)
         .dimension(miness)
