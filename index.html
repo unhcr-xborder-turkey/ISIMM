@@ -76,7 +76,8 @@
              -->
             <div  class="row" id="cccm"  data-step="2" data-intro="Click on the pie chart below to filter the sites per condition type"  align="center">
                 <h4>Filter on conditions within the sites</h4>
-                <p><small><i>Based on site observations by partner agencies</i></small></p>
+                  <p style="font-size:85%;">
+                         <span style="color: #2a87cf;"> 1. Fully covered </span>/ <span style="color: #b3d1de;">2. Mostly covered </span> / <span style="color: #ffb4ae;">3. Partially covered </span> / <span style="color: #db504a;">4. Not covered</span> </p>
                     <div class="col-md-2" >
                         <div class="openelementp" id="cccm" class="dc-chart" >
                           <p><small>Shelter</small></p>
@@ -121,18 +122,20 @@
                       <h4>Governorates</h4>
                       <p><small><i>Number of individuals</i></small></p>
                     </div>
-
-                    <div class="classp" class="col-xs-6 dc-chart" data-step="4" data-intro="Click on this bar chart to filter by site class size" align="center">
-                      <h4>Site size</h4>
-                      <p><small><i>Number of sites by size</i></small></p>
-                    </div>
-                </div>
-
-                <div  class="col-md-2"  data-step="5" data-intro="Click on this bar chart to filter by district"  align="center">
-                    <div class="districtp" class="dc-chart" >
+<div class="districtp" class="dc-chart" >
                         <h4>Districts</h4>
                         <p><small><i>Number of individuals</i></small></p>
                     </div>
+                   
+                </div>
+  
+                
+                <div  class="col-md-2"  data-step="5" data-intro="Click on this bar chart to filter by district"  align="center">
+                    <div  class="scorep" id="cccm" class="dc-chart" align="center">
+                          <h4>Camp Clusters</h4>
+                          <p><small><i>Number of sites</i></small></p>
+                        </div>
+                    
                 </div>
 
                 <div  class="col-md-13"  data-step="6" data-intro="Click on these chart to filter by site environment or shelter composition" data-position="center">
@@ -142,11 +145,11 @@
                           <h4>Site type</h4>
                         <p><small><i>Direct environment</i></small></p>
                         </div>
+                     <div class="classp" class="col-xs-6 dc-chart" data-step="4" data-intro="Click on this bar chart to filter by site class size" align="center">
+                      <h4>Site size</h4>
+                      <p><small><i>Number of sites by size</i></small></p>
+                    </div>
                     
-                       <div  class="scorep" id="cccm" class="dc-chart" align="center">
-                          <h4>Camp Clusters</h4>
-                          <p><small><i>Number of sites</i></small></p>
-                        </div>
                
                      
                 </div>
@@ -154,10 +157,11 @@
                 <div  class="col-md-14"  data-step="7" data-intro="Click on the map to filter by site"  align="center">
                     <h4>Map: Location of the sites</h4>
                       <p><small><i>Zoom on the map to filter sites. click on the pinpoint for more information</i></small></p>
-                    <div  class="map" id="cccm"  > </div>
-                </div>
+                    <div  class="map" id="cccm"  align="right"> </div>
+                    
+                </div>  
             </div>
-            <div class="row" ></div>
+            
 
  <!--             <div  class="row" id="cccm" >
 
@@ -279,7 +283,7 @@ var numberFormat = d3.format(",f");
 
 
 
-d3.csv("data/ISIMM2.csv", function(data) {
+d3.csv("data/ISIMM.csv", function(data) {
  // drawMarkerSelect(data);
   drawMarkerArea(data);
 });
@@ -407,8 +411,8 @@ function drawMarkerArea(data) {
   dc.leafletMarkerChart("#cccm .map",groupname)
       .dimension(facilities)
       .group(facilitiesGroup)
-      .width(400)
-      .height(390)
+      .width(540)
+      .height(440)
       .center([36.2503,37.4385])
       .zoom(7)
       .cluster(true)
@@ -430,6 +434,20 @@ var colorScale2 = d3.scale.ordinal()
         .domain(["IS", "PC", "TC", "CC"])
         .range(["#2a87cf", "#56A2DC", "#88BEE7", "#BBDAF1"]);
     
+     var openelements = xf.dimension(function(d) { return d.shelter_cat; });
+  var openelementsGroup = openelements.group().reduceCount();
+  dc.pieChart("#cccm .openelementp",groupname)
+        .dimension(openelements)
+        .group(openelementsGroup)
+        .width(95)
+        .height(95)
+        .renderLabel(false)
+        .renderTitle(true)
+        .colors(colorScale)
+         .colorDomain([0,4]);
+     //   .ordering(function (p) { return -p.value; });
+
+    
   var waters = xf.dimension(function(d) { return d.water_cat; });
   var watersGroup = waters.group().reduceCount();
   dc.pieChart("#cccm .waterp",groupname)
@@ -437,7 +455,7 @@ var colorScale2 = d3.scale.ordinal()
         .group(watersGroup)
         .width(95)
         .height(95)
-        .renderLabel(true)
+        .renderLabel(false)
         .renderTitle(true)
       .colors(colorScale)
          .colorDomain([0,4]) ;
@@ -453,7 +471,7 @@ var colorScale2 = d3.scale.ordinal()
         .group(waterqsGroup)
         .width(95)
         .height(95)
-        .renderLabel(true)
+        .renderLabel(false)
         .renderTitle(true)
         .colors(colorScale)
          .colorDomain([0,4]);
@@ -467,26 +485,14 @@ var colorScale2 = d3.scale.ordinal()
         .group(electricsGroup)
         .width(95)
         .height(95)
-        .renderLabel(true)
+        .renderLabel(false)
         .renderTitle(true)
       .colors(colorScale)
          .colorDomain([0,4]);
      //  .ordering(function (p) { return -p.value; });
 
 
-  var openelements = xf.dimension(function(d) { return d.shelter_cat; });
-  var openelementsGroup = openelements.group().reduceCount();
-  dc.pieChart("#cccm .openelementp",groupname)
-        .dimension(openelements)
-        .group(openelementsGroup)
-        .width(95)
-        .height(95)
-        .renderLabel(true)
-        .renderTitle(true)
-        .colors(colorScale)
-         .colorDomain([0,4]);
-     //   .ordering(function (p) { return -p.value; });
-
+ 
   var damages = xf.dimension(function(d) { return d.damage; });
   var damagesGroup = damages.group().reduceCount();
   dc.pieChart("#cccm .damagep",groupname)
@@ -494,7 +500,7 @@ var colorScale2 = d3.scale.ordinal()
         .group(damagesGroup)
         .width(95)
         .height(95)
-        .renderLabel(true)
+        .renderLabel(false)
         .renderTitle(true)
        .colors(colorScale)
          .colorDomain([0,4]);
@@ -507,7 +513,7 @@ var colorScale2 = d3.scale.ordinal()
         .group(hazardssGroup)
         .width(95)
         .height(95)
-        .renderLabel(true)
+        .renderLabel(false)
         .renderTitle(true)
       .colors(colorScale)
          .colorDomain([0,4]);
@@ -520,7 +526,7 @@ var colorScale2 = d3.scale.ordinal()
         .group(minessGroup)
         .width(95)
         .height(95)
-        .renderLabel(true)
+        .renderLabel(false)
         .renderTitle(true)
      .colors(colorScale)
          .colorDomain([0,4]);
@@ -533,7 +539,7 @@ var colorScale2 = d3.scale.ordinal()
         .group(fightingsGroup)
         .width(95)
         .height(95)
-        .renderLabel(true)
+        .renderLabel(false)
         .renderTitle(true)
      .colors(colorScale)
          .colorDomain([0,4]);
@@ -545,8 +551,8 @@ var colorScale2 = d3.scale.ordinal()
   dc.pieChart("#cccm .environmentp",groupname)
         .dimension(environments)
         .group(environmentsGroup)
-        .width(95)
-        .height(95)
+        .width(175)
+        .height(175)
         .renderLabel(true)
         .renderTitle(true)
   .colors(colorScale2)
@@ -592,8 +598,8 @@ var colorScale2 = d3.scale.ordinal()
   dc.rowChart("#cccm .districtp",groupname)
         .dimension(districts)
         .group(districtsByIndividual)
-        .width(250)
-        .height(450)
+        .width(200)
+        .height(250)
         .renderLabel(true)
         .ordering(function (p) { return -p.value;})
         .colors(['#2a87cf'])
@@ -629,13 +635,13 @@ var colorScale2 = d3.scale.ordinal()
  //    var accomsGroup = regroup(accoms, ['Improvised_Shelter', 'Tent', 'Individual_mud_building', 'Individual_mix_building', 'Individual_concrete_building', 'Shop', 'Apartment_block Under_construction']);
 
  var scores = xf.dimension(function(d) { return d.cluster; });
- var scoresGroup = scores.group().reduceCount(function (d) { return d.cluster; });
+ var scoresGroup = scores.group().reduceCount(function (d) { return group.top(5); }); 
 
   dc.rowChart("#cccm .scorep",groupname)
         .dimension(scores)
         .group(scoresGroup)
-        .width(250)
-        .height(285)
+        .width(300)
+        .height(475)
         .renderLabel(true)
         .renderTitle(true)
         .colors(['#2a87cf'])
