@@ -133,7 +133,7 @@
                 <div  class="col-md-2"  data-step="5" data-intro="Click on this bar chart to filter by district"  align="center">
                     <div  class="scorep" id="cccm" class="dc-chart" align="center">
                           <h4>Camp Clusters</h4>
-                          <p><small><i>Number of sites</i></small></p>
+                          <p ><small><i>Number of sites</i></small></p>
                         </div>
                     
                 </div>
@@ -143,7 +143,7 @@
 
                         <div class="environmentp" id="cccm" class="dc-chart" align="center">
                           <h4>Site type</h4>
-                        <p><small><i>Direct environment</i></small></p>
+                        <p style="font-size:75%;"><i>CC: Collective Centre, IS: Informal Settlement, <br> TC: Transit Centre, PC: Planned camp </i></p>
                         </div>
                      <div class="classp" class="col-xs-6 dc-chart" data-step="4" data-intro="Click on this bar chart to filter by site class size" align="center">
                       <h4>Site size</h4>
@@ -427,7 +427,7 @@ function drawMarkerArea(data) {
 
 //water_access  water_quality   electric    openelement damage  hazards mines   fighting
  var colorScale = d3.scale.ordinal()
-        .domain(["1. Fully covered", "2. Mostly covered", "3. Partially covered", "4. Not covered"])
+        .domain(["1. Fully covered", "2. Mostly covered", "3. Partially covered", "4. Not covered - N/A"])
         .range(["#2572ad", "#4D9CD8", "#FC7E77", "#de4c44"]);
     
 var colorScale2 = d3.scale.ordinal()
@@ -565,7 +565,7 @@ var colorScale2 = d3.scale.ordinal()
         .dimension(classs)
         .group(classsGroup)
         .width(200)
-        .height(233)
+        .height(219)
         .renderLabel(true)
         .renderTitle(true)
         .colors(['#2a87cf'])
@@ -599,7 +599,7 @@ var colorScale2 = d3.scale.ordinal()
         .dimension(districts)
         .group(districtsByIndividual)
         .width(200)
-        .height(250)
+        .height(260)
         .renderLabel(true)
         .ordering(function (p) { return -p.value;})
         .colors(['#2a87cf'])
