@@ -77,7 +77,7 @@
             <div  class="row" id="cccm"  data-step="2" data-intro="Click on the pie chart below to filter the sites per condition type"  align="center">
                 <h4>Filter on conditions within the sites</h4>
                   <p style="font-size:85%;">
-                         <span style="color: #2a87cf;"> 1. Fully covered </span>/ <span style="color: #b3d1de;">2. Mostly covered </span> / <span style="color: #ffb4ae;">3. Partially covered </span> / <span style="color: #db504a;">4. Not covered / Information unavailable</span> </p>
+                         <span style="color: #2572ad;"> 1. Fully covered </span>/ <span style="color: #4D9CD8;">2. Mostly covered </span> / <span style="color: #FC7E77;">3. Partially covered </span> / <span style="color: #de4c44;">4. Not covered - Information unavailable</span> </p>
                     <div class="col-md-2" >
                         <div class="openelementp" id="cccm" class="dc-chart" >
                           <p><small>Shelter</small></p>
@@ -428,7 +428,7 @@ function drawMarkerArea(data) {
 //water_access  water_quality   electric    openelement damage  hazards mines   fighting
  var colorScale = d3.scale.ordinal()
         .domain(["1. Fully covered", "2. Mostly covered", "3. Partially covered", "4. Not covered"])
-        .range(["#2a87cf", "#b3d1de", "#ffb4ae", "#db504a"]);
+        .range(["#2572ad", "#4D9CD8", "#FC7E77", "#de4c44"]);
     
 var colorScale2 = d3.scale.ordinal()
         .domain(["IS", "PC", "TC", "CC"])
