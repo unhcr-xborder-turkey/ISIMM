@@ -44,14 +44,10 @@
                <img src="images/ISIMM.png" style="width: 100%"></a>
          </div>
 
-        <div class="col-xs-12">Explore the profile of IDP sites in Northern Syria. <!-- You can download the data <a href="data/dataviz.tsv"  target="_blank">here</a> and access the full map <a href="https://ona.io/iraqcccm/forms/baseline/map" target="_blank" >here</a> -->
+        <div class="col-xs-12"><!--Explore the profile of IDP sites in Northern Syria.  You can download the data <a href="data/dataviz.tsv"  target="_blank">here</a> and access the full map <a href="https://ona.io/iraqcccm/forms/baseline/map" target="_blank" >here</a> -->
 
             <div class="socialmedia" data-step="9" data-intro="Share this visualisation on twitter!" data-position="left">
-                <table>
-                  <tbody><tr>
-                    <td valign="middle"><a href="https://twitter.com/intent/tweet?url=http://unhcr-iraq.github.io/Site-Assessment/&amp;text=%23Assessment%23IDP%23Iraq%23CCCM%20@UNHCRIraq%20@IOMIraq%20@REACH_info%20@matt_zan" target="_blank"><img src="images/Twitter.png" style="height: 25px; width: 25px"></a></td>
-                </tr>
-                </tbody></table>
+               
            </div>
 
 
@@ -60,12 +56,11 @@
                     <a class="btn btn btn-success" href="javascript:void(0);" onclick="javascript:introJs().start();">How-To</a> 
                     
                 </div>
-                <div class="col-md-9"  data-step="1" data-intro="This displays the number of sites you filtered. Use the reset button to delete all your filters" data-position="right">
-                    <div id="count-info"  class="col-md-8">
-                        <p></p><strong><span class="filter-count"></span></strong> sites selected out of <strong><span class="total-count"></span></strong> records. <span id="totalind" class="number-display"></span> individuals, of which: <!--
-                         <span id="totalhou" class="number-display"></span> household, --> <span id="totalmen" class="number-display"></span> men, <span id="totalwom" class="number-display"></span> women, <span id="totalboy" class="number-display"></span> boys, <span  id="totalgirl" class="number-display"></span> girls.
-                         </p>
-                    </div>
+                <div class="col-md-5" align="center">
+                 <h4>Filter on conditions within the sites</h4>
+                </div>
+                
+                <div class="col-md-2"  data-step="1" data-intro="This displays the number of sites you filtered. Use the reset button to delete all your filters" data-position="right">
                     
                     <div class="col-md-1">
                        <a class="reset btn btn-primary btn-sm" id="reset" href="#">Reset All</a>     
@@ -75,7 +70,7 @@
             <!--
              -->
             <div  class="row" id="cccm"  data-step="2" data-intro="Click on the pie chart below to filter the sites per condition type"  align="center">
-                <h4>Filter on conditions within the sites</h4>
+               
                   <p style="font-size:85%;">
                          <span style="color: #2572ad;"> 1. Fully covered </span>/ <span style="color: #4D9CD8;">2. Mostly covered </span> / <span style="color: #FC7E77;">3. Partially covered </span> / <span style="color: #de4c44;">4. Not covered - Information unavailable</span> </p>
                     <div class="col-md-2" >
@@ -112,7 +107,10 @@
 
 
 
-            <div class="row" ></div>
+            <div class="row"  align="center"> <h4>Filter on location, status and composition of the sites</h4>
+        <p style="font-size:85%;" align="center">
+                         <i>All charts relate to number of individuals.  </i> </p>
+        </div>
 
 
             <div class="row" id="cccm">
@@ -120,11 +118,11 @@
                 <div class="col-md-2" >
                     <div class="governoratep" class="col-xs-6 dc-chart" data-step="3" data-intro="Click on this bar chart to filter by governorate" data-position="right" align="center">
                       <h4>Governorates</h4>
-                      <p><small><i>Number of individuals</i></small></p>
+                      
                     </div>
 <div class="districtp" class="dc-chart" >
                         <h4>Districts</h4>
-                        <p><small><i>Number of individuals</i></small></p>
+                      
                     </div>
                    
                 </div>
@@ -133,7 +131,7 @@
                 <div  class="col-md-2"  data-step="5" data-intro="Click on this bar chart to filter by district"  align="center">
                     <div  class="scorep" id="cccm" class="dc-chart" align="center">
                           <h4>Camp Clusters</h4>
-                          <p ><small><i>Number of sites</i></small></p>
+                          <p style="font-size:75%;" align="left"><i>A Camp Cluster refers to a group of camps in close proximity with high levels of collaboration among member agencies. </i></p>
                         </div>
                     
                 </div>
@@ -145,19 +143,33 @@
                           <h4>Site type</h4>
                         <p style="font-size:75%;"><i>CC: Collective Centre, IS: Informal Settlement, <br> TC: Transit Centre, PC: Planned camp </i></p>
                         </div>
-                     <div class="classp" class="col-xs-6 dc-chart" data-step="4" data-intro="Click on this bar chart to filter by site class size" align="center">
-                      <h4>Site size</h4>
-                      <p><small><i>Number of sites by size</i></small></p>
+                     <div id="count-info"  align="center">
+                        <br><br>
+                        <h4>Current Selection</h4>
+                        <p>
+                            <span style="font-size:90%"> 
+                              <strong> <span class="filter-count"></span></strong> sites selected out of <strong><span class="total-count"></span></strong>. <br> <br>
+                            <span id="totalind" class="number-display"></span> individuals, of which: <br>
+                            <!--
+                         <span id="totalhou" class="number-display"></span> household, --> 
+                           <span id="totalmen" class="number-display" ></span> men, <br>
+                            <span id="totalwom" class="number-display"></span> women, <br>
+                            <span id="totalboy" class="number-display"></span> boys, <br>
+                            <span  id="totalgirl" class="number-display"></span> girls. 
+                            </span>
+                         </p>
                     </div>
                     
                
                      
                 </div>
 
-                <div  class="col-md-14"  data-step="7" data-intro="Click on the map to filter by site"  align="center">
-                    <h4>Map: Location of the sites</h4>
-                      <p><small><i>Zoom on the map to filter sites. click on the pinpoint for more information</i></small></p>
-                    <div  class="map" id="cccm"  align="right"> </div>
+                <div  class="col-md-14"  data-step="7" data-intro="Click on the map to filter by site">
+                    <div align="center"> <h4>Map: Location of the sites</h4>
+                      <p><small><i>Zoom on the map to filter sites. click on the pinpoint for more information <br>
+                          For security reasons, please note that camp coordinates are purposely imprecise.
+                          </i></small></p></div>
+                    <div  class="map" id="cccm"  align="left"> </div>
                     
                 </div>  
             </div>
@@ -252,14 +264,31 @@
               </table>
             </div>
            </div>
--->
 
 
-    </div>
 
-    <small><a href="https://github.com/unhcr-iraq/Site-Assessment" target="_blank">Credit</a></small>
+  
+    <div class="row" id="cccm" data-position="left">
+     <div  class="col-md-14"  align="center">
+       
+         <div class="camps" class="col-md-4 dc-chart" >  <h4>Test</h4> </div>
+        </div>
+    </div> -->
+        
+        <div class="row"> 
+    <div class="col" align="left"> <small><a href="https://github.com/unhcr-iraq/Site-Assessment" target="_blank">Credit</a></small></div>
 
-
+            <div class="col" align="right">
+                    <table>
+                  <tbody><tr>
+                    <td ><a href="https://twitter.com/intent/tweet?url=http://unhcr-iraq.github.io/Site-Assessment/&amp;text=%23Assessment%23IDP%23Iraq%23CCCM%20@UNHCRIraq%20@IOMIraq%20@REACH_info%20@matt_zan" target="_blank"><img src="images/Twitter.png" style="height: 20px; width: 20px"></a></td>
+                </tr>
+                </tbody></table> 
+                    </div>
+            </div>
+</div>
+        
+        
     <script type="text/javascript" src="js/intro.js"></script>
     <script type="text/javascript" src="js/d3_002.js"></script>
     <script type="text/javascript" src="js/d3.js"></script>
@@ -283,7 +312,7 @@ var numberFormat = d3.format(",f");
 
 
 
-d3.csv("data/ISIMM.csv", function(data) {
+d3.csv("data/ISIMM3.csv", function(data) {
  // drawMarkerSelect(data);
   drawMarkerArea(data);
 });
@@ -407,22 +436,27 @@ function drawMarkerArea(data) {
     
   var facilities = xf.dimension(function(d) { return d.geo; });
   var facilitiesGroup = facilities.group().reduceCount();
-
+var labelmap = xf.dimension(function(d) {return d.camp_name});
+    
   dc.leafletMarkerChart("#cccm .map",groupname)
       .dimension(facilities)
       .group(facilitiesGroup)
       .width(540)
       .height(440)
-      .center([36.2503,37.4385])
+      .center([36.0503,38.2385])
       .zoom(7)
       .cluster(true)
       .filterByArea(true)
     //  .featureKeyAccessor(function(feature) {return feature.properties.geo; })
       .renderPopup(true)
-    //  .popup(function(feature) { return feature.properties.sitear+" : "+feature.properties.neighbourhood; });
+ // .popup(function(d,feature) {
+         //         return feature.properties.camp_name+" : "+d.value;
+           //   })
+    //  .popup(function(feature) { return feature.properties.camp_name +" : "+feature.properties.neighbourhood; });
+//   .popup(function(feature) { return feature.properties.camp_name+" : "+feature.properties.individual; });
        //sitear	neighbourhood	organisat	governorate	district	photo	environment	phone	household	men	women	boys	girls	individual
       //.clusterObject({ maxClusterRadius: 40, disableClusteringAtZoom:10,spiderfyOnMaxZoom: false,showCoverageOnHover: false})
-      .popup();
+.popup();
 
 
 //water_access  water_quality   electric    openelement damage  hazards mines   fighting
@@ -439,26 +473,29 @@ var colorScale2 = d3.scale.ordinal()
   dc.pieChart("#cccm .openelementp",groupname)
         .dimension(openelements)
         .group(openelementsGroup)
-        .width(95)
-        .height(95)
+        .width(75)
+        .height(75)
         .renderLabel(false)
+     .label(function(d) { return Math.floor(d.value / all.value() * 100) + "%"; })
         .renderTitle(true)
         .colors(colorScale)
-         .colorDomain([0,4]);
+;
      //   .ordering(function (p) { return -p.value; });
 
     
   var waters = xf.dimension(function(d) { return d.water_cat; });
   var watersGroup = waters.group().reduceCount();
+    
   dc.pieChart("#cccm .waterp",groupname)
         .dimension(waters)
         .group(watersGroup)
-        .width(95)
-        .height(95)
-        .renderLabel(false)
+        .width(75)
+        .height(75)
+        .renderLabel(true)
+      .label(function(d) { return Math.floor(d.value / all.value() * 100) + "%"; })
         .renderTitle(true)
       .colors(colorScale)
-         .colorDomain([0,4]) ;
+         .colorDomain([0,3,4]) ;
     //   .ordering(function (p) { return -p.value; });
 
 
@@ -469,12 +506,13 @@ var colorScale2 = d3.scale.ordinal()
   dc.pieChart("#cccm .waterqp",groupname)
         .dimension(waterqs)
         .group(waterqsGroup)
-        .width(95)
-        .height(95)
-        .renderLabel(false)
+        .width(75)
+        .height(75)
+        .renderLabel(true)
+     .label(function(d) { return Math.floor(d.value / all.value() * 100) + "%"; })
         .renderTitle(true)
         .colors(colorScale)
-         .colorDomain([0,4]);
+         .colorDomain(colorScale);
     //   .ordering(function (p) { return -p.value; });
 
 
@@ -483,12 +521,13 @@ var colorScale2 = d3.scale.ordinal()
   dc.pieChart("#cccm .electricp",groupname)
         .dimension(electrics)
         .group(electricsGroup)
-        .width(95)
-        .height(95)
-        .renderLabel(false)
+        .width(75)
+        .height(75)
+        .renderLabel(true)
+     .label(function(d) { return Math.floor(d.value / all.value() * 100) + "%"; })
         .renderTitle(true)
       .colors(colorScale)
-         .colorDomain([0,4]);
+         .colorDomain(colorScale);
      //  .ordering(function (p) { return -p.value; });
 
 
@@ -498,12 +537,13 @@ var colorScale2 = d3.scale.ordinal()
   dc.pieChart("#cccm .damagep",groupname)
         .dimension(damages)
         .group(damagesGroup)
-        .width(95)
-        .height(95)
-        .renderLabel(false)
+        .width(75)
+        .height(75)
+        .renderLabel(true)
+     .label(function(d) { return Math.floor(d.value / all.value() * 100) + "%"; })
         .renderTitle(true)
        .colors(colorScale)
-         .colorDomain([0,4]);
+         .colorDomain(colorScale);
      //   .ordering(function (p) { return -p.value; });
 
   var hazardss = xf.dimension(function(d) { return d.waste_cat; });
@@ -511,12 +551,13 @@ var colorScale2 = d3.scale.ordinal()
   dc.pieChart("#cccm .hazardsp",groupname)
         .dimension(hazardss)
         .group(hazardssGroup)
-        .width(95)
-        .height(95)
-        .renderLabel(false)
+        .width(75)
+        .height(75)
+        .renderLabel(true)
+     .label(function(d) { return Math.floor(d.value / all.value() * 100) + "%"; })
         .renderTitle(true)
       .colors(colorScale)
-         .colorDomain([0,4]);
+         .colorDomain(colorScale);
     //    .ordering(function (p) { return -p.value; });
 
   var miness = xf.dimension(function(d) { return d.NFI_cat; });
@@ -524,12 +565,13 @@ var colorScale2 = d3.scale.ordinal()
   dc.pieChart("#cccm .minesp",groupname)
         .dimension(miness)
         .group(minessGroup)
-        .width(95)
-        .height(95)
-        .renderLabel(false)
+        .width(75)
+        .height(75)
+        .renderLabel(true)
+       .label(function(d) { return Math.floor(d.value / all.value() * 100) + "%"; })
         .renderTitle(true)
      .colors(colorScale)
-         .colorDomain([0,4]);
+         .colorDomain(colorScale);
     //    .ordering(function (p) { return -p.value; });
 
   var fightings = xf.dimension(function(d) { return d.fighting; });
@@ -547,7 +589,8 @@ var colorScale2 = d3.scale.ordinal()
 
 
   var environments = xf.dimension(function(d) { return d.environment; });
-  var environmentsGroup = environments.group().reduceCount();
+  var environmentsGroup = environments.group().reduceSum(function (d) { return d.individual; }); //var governoratesByIndividual = governorates.group().reduceSum(function (d) { return d.individual; });
+    
   dc.pieChart("#cccm .environmentp",groupname)
         .dimension(environments)
         .group(environmentsGroup)
@@ -555,7 +598,7 @@ var colorScale2 = d3.scale.ordinal()
         .height(175)
         .renderLabel(true)
         .renderTitle(true)
-  .colors(colorScale2)
+        .colors(colorScale2)
         .ordering(function (p) { return -p.value; });
 
 
@@ -576,8 +619,8 @@ var colorScale2 = d3.scale.ordinal()
        // .ordering(function (p) { return -p.value;});
 
 
-  var types = xf.dimension(function(d) { return d.organisat; });
-  var typesGroup = types.group().reduceCount();
+  var types = xf.dimension(function(d) { return d.camp_name; });
+  var typesGroup = types.group().reduceSum(function (d) { return d.individual; });
   dc.rowChart("#cccm .orgap",groupname)
         .dimension(types)
         .group(typesGroup)
@@ -599,7 +642,7 @@ var colorScale2 = d3.scale.ordinal()
         .dimension(districts)
         .group(districtsByIndividual)
         .width(200)
-        .height(260)
+        .height(285)
         .renderLabel(true)
         .ordering(function (p) { return -p.value;})
         .colors(['#2a87cf'])
@@ -635,23 +678,44 @@ var colorScale2 = d3.scale.ordinal()
  //    var accomsGroup = regroup(accoms, ['Improvised_Shelter', 'Tent', 'Individual_mud_building', 'Individual_mix_building', 'Individual_concrete_building', 'Shop', 'Apartment_block Under_construction']);
 
  var scores = xf.dimension(function(d) { return d.cluster; });
- var scoresGroup = scores.group().reduceCount(function (d) { return group.top(5); }); 
+ var scoresGroup = scores.group().reduceSum(function (d) {  return d.individual;}); 
 
   dc.rowChart("#cccm .scorep",groupname)
         .dimension(scores)
         .group(scoresGroup)
         .width(300)
-        .height(475)
+        .height(405)
         .renderLabel(true)
         .renderTitle(true)
         .colors(['#2a87cf'])
         .colorDomain([0,0])
         .elasticX(true)
-   .ordering(function (p) { return -p.value;})
+        .ordering(function (p) { return -p.value;})
         .colorAccessor(function(d, i){return 1;})
         //.ordering(function (p) { return -p.value;})
         .xAxis().ticks(4).tickFormat(d3.format("s"));
-/*
+    
+   /* there are way too many camps to include
+   
+var camps = xf.dimension(function(d) { return d.camp_name; });
+ var campsGroup = camps.group().reduceSum(function (d) {  return d.individual;}); 
+
+  dc.rowChart("#cccm .camps",groupname)
+        .dimension(camps)
+        .group(campsGroup)
+        .width(300)
+        .height(1005)
+        .renderLabel(true)
+        .renderTitle(true)
+        .colors(['#2a87cf'])
+        .colorDomain([0,0])
+        //.elasticX(true)
+      //.ordering(function (p) { return -p.value;})
+        //.colorAccessor(function(d, i){return 1;})
+        //.ordering(function (p) { return -p.value;})
+       // .xAxis().ticks(4).tickFormat(d3.format("s"));
+    
+
 
  dc.pieChart("#cccm .fightingp",groupname)
         .dimension(fightings)
