@@ -249,7 +249,7 @@
             </div>
 
 -->
-<!--
+<!-- 
            <div class='row'>
             <div class='col-md-12'>
               <table class='table table-hover' id='dc-table-graph'>
@@ -273,15 +273,16 @@
        
          <div class="camps" class="col-md-4 dc-chart" >  <h4>Test</h4> </div>
         </div>
-    </div> -->
-        
+    </div> 
+        -->
+            
         <div class="row"> 
     <div class="col" align="left"> <small><a href="https://github.com/unhcr-iraq/Site-Assessment" target="_blank">Credit</a></small></div>
 
             <div class="col" align="right">
                     <table>
                   <tbody><tr>
-                    <td ><a href="https://twitter.com/intent/tweet?url=http://unhcr-iraq.github.io/Site-Assessment/&amp;text=%23Assessment%23IDP%23Iraq%23CCCM%20@UNHCRIraq%20@IOMIraq%20@REACH_info%20@matt_zan" target="_blank"><img src="images/Twitter.png" style="height: 20px; width: 20px"></a></td>
+                    <td ><a href="https://twitter.com/intent/tweet?url=http://unhcr-iraq.github.io/Site-Assessment/&amp;text=%23Assessment%23IDP%23Iraq%23CCCM%20@UNHCRIraq%20@IOMIraq%20@REACH_info" target="_blank"><img src="images/Twitter.png" style="height: 20px; width: 20px"></a></td>
                 </tr>
                 </tbody></table> 
                     </div>
@@ -371,7 +372,16 @@ function drawMarkerArea(data) {
     delete data;
 */
 
-
+function remove_empty_bins(source_group) {
+    return {
+        all:function () {
+            return source_group.all().filter(function(d) {
+                return d.value != 0;
+            });
+        }
+    };
+}
+    
   var xf = crossfilter(data);
 
   var groupname = "marker-select";
@@ -436,7 +446,7 @@ function drawMarkerArea(data) {
     
   var facilities = xf.dimension(function(d) { return d.geo; });
   var facilitiesGroup = facilities.group().reduceCount();
-var labelmap = xf.dimension(function(d) {return d.camp_name});
+// var labelmap = xf.dimension(function(d) {return d.camp_name});
     
   dc.leafletMarkerChart("#cccm .map",groupname)
       .dimension(facilities)
@@ -618,12 +628,14 @@ var colorScale2 = d3.scale.ordinal()
         .xAxis().ticks(4).tickFormat(d3.format("s"));
        // .ordering(function (p) { return -p.value;});
 
-
+/*
   var types = xf.dimension(function(d) { return d.camp_name; });
   var typesGroup = types.group().reduceSum(function (d) { return d.individual; });
+    
   dc.rowChart("#cccm .orgap",groupname)
         .dimension(types)
         .group(typesGroup)
+        .elasticX(true)
         .width(350)
         .height(200)
         .renderLabel(true)
@@ -631,9 +643,10 @@ var colorScale2 = d3.scale.ordinal()
         .colors(['#2a87cf'])
         .colorDomain([0,0])
         .colorAccessor(function(d, i){return 1;})
-        .xAxis().ticks(4).tickFormat(d3.format("s"));
-       // .ordering(function (p) { return -p.value;});
+.xAxis().ticks(5);       // .ordering(function (p) { return -p.value;});
 
+    */
+     
 
   var districts = xf.dimension(function(d) { return d.district; });
   var districtsByIndividual = districts.group().reduceSum(function (d) { return d.individual; });
@@ -695,27 +708,34 @@ var colorScale2 = d3.scale.ordinal()
         //.ordering(function (p) { return -p.value;})
         .xAxis().ticks(4).tickFormat(d3.format("s"));
     
-   /* there are way too many camps to include
+   
    
 var camps = xf.dimension(function(d) { return d.camp_name; });
  var campsGroup = camps.group().reduceSum(function (d) {  return d.individual;}); 
+    var filteredcampsGroup = remove_empty_bins(campsGroup);
 
-  dc.rowChart("#cccm .camps",groupname)
+  dc.barChart("#cccm .camps",groupname)
         .dimension(camps)
         .group(campsGroup)
-        .width(300)
-        .height(1005)
+        .width(1200)
+        .height(205)
+        .x(d3.scale.ordinal(campsGroup))
+        .xUnits(dc.units.ordinal)
+        .y(d3.scale.linear().domain([0, 10000]))
+  
+        .brushOn(false)
         .renderLabel(true)
         .renderTitle(true)
         .colors(['#2a87cf'])
         .colorDomain([0,0])
-        //.elasticX(true)
+        .elasticY(true)
+  .elasticX(true)
       //.ordering(function (p) { return -p.value;})
-        //.colorAccessor(function(d, i){return 1;})
-        //.ordering(function (p) { return -p.value;})
-       // .xAxis().ticks(4).tickFormat(d3.format("s"));
+      .colorAccessor(function(d, i){return 1;})
+   //   .ordering(function (p) { return -p.value;})
+      .yAxis().ticks(4).tickFormat(d3.format("s"));
     
-
+/* there are way too many camps to include
 
  dc.pieChart("#cccm .fightingp",groupname)
         .dimension(fightings)
