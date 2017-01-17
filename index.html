@@ -60,7 +60,7 @@
                  <h4>Filter on conditions within the sites</h4>
                 </div>
                 
-                <div class="col-md-2"  data-step="1" data-intro="This displays the number of sites you filtered. Use the reset button to delete all your filters" data-position="right">
+                <div class="col-md-2"  data-step="1" data-intro="Use the reset button at any time to delete all your filters" data-position="right">
                     
                     <div class="col-md-1">
                        <a class="reset btn btn-primary btn-sm" id="reset" href="#">Reset All</a>     
@@ -69,36 +69,36 @@
             </div>
             <!--
              -->
-            <div  class="row" id="cccm"  data-step="2" data-intro="Click on the pie chart below to filter the sites per condition type"  align="center">
+            <div  class="row" id="cccm"  data-step="2" data-intro="Click on the pie charts to filter the sites per condition type. You can select more than one criteria to filter! Just click one after the other."  align="center">
                
-                  <p style="font-size:85%;"> % of IDP sites:
+                  <p style="font-size:85%;"> % of total IDP population:
                          <span style="color: #2572ad;"> 1. Fully covered </span>/ <span style="color: #4D9CD8;">2. Mostly covered </span> / <span style="color: #FC7E77;">3. Partially covered </span> / <span style="color: #de4c44;">4. Not covered - Information unavailable</span> </p>
-                    <div class="col-md-2" >
+                    <div class="col-md-15" >
                         <div class="shelter" id="cccm" class="dc-chart" >
                           <p><small>Shelter</small></p>
                         </div>
                     </div>
-                    <div class="col-md-2" >
+                    <div class="col-md-15" >
                         <div class="waterp" id="cccm"  class="dc-chart" >
                           <p><small>Water</small></p>
                         </div>
                     </div>
-                    <div class="col-md-2" >
+                    <div class="col-md-15" >
                         <div class="sanitation" id="cccm" class="dc-chart" >
                           <p><small>Sanitation</small></p>
                         </div>
                     </div>
-                    <div class="col-md-2" >
+                    <div class="col-md-15" >
                         <div class="waster" id="cccm" class="dc-chart" >
                           <p><small>Waste Removal</small></p>
                         </div>
                     </div>
-                    <div class="col-md-2" >
+                    <div class="col-md-15" >
                         <div class="NFI" id="cccm" class="dc-chart" >
                           <p><small>NFI</small></p>
                         </div>
                     </div>
-                    <div class="col-md-2" >
+                    <div class="col-md-15" >
                         <div class="food" id="cccm" class="dc-chart" >
                           <p><small>Food</small></p>
                         </div>
@@ -107,20 +107,20 @@
 
 
 
-            <div class="row"  align="center"> <h4>Filter on location, status and composition of the sites</h4>
+            <div class="row"  align="center" data-step="3" data-intro="All of these charts display information based on the number of individuals by location. Again, you can combine as many filters as you want."> <h4>Filter on location, status and composition of the sites</h4>
         <p style="font-size:85%;" align="center">
                          <i>All charts relate to number of individuals.  </i> </p>
-        </div>
+
 
 
             <div class="row" id="cccm">
 
                 <div class="col-md-2" >
-                    <div class="governoratep" class="col-xs-6 dc-chart" data-step="3" data-intro="Click on this bar chart to filter by governorate" data-position="right" align="center">
+                    <div class="governoratep" class="col-xs-6 dc-chart" data-step="4" data-intro="Click on this bar chart to filter by governorate." data-position="right" align="center">
                       <h4>Governorates</h4>
                       
                     </div>
-<div class="districtp" class="dc-chart" >
+<div class="districtp" class="dc-chart"  data-step="5" data-intro="Click on this bar chart to filter by district" >
                         <h4>Districts</h4>
                       
                     </div>
@@ -128,7 +128,7 @@
                 </div>
   
                 
-                <div  class="col-md-2"  data-step="5" data-intro="Click on this bar chart to filter by district"  align="center">
+                <div  class="col-md-2"  data-step="6" data-intro="Click on this bar chart to filter by Camp Cluster"  align="center">
                     <div  class="scorep" id="cccm" class="dc-chart" align="center">
                           <h4>Camp Clusters</h4>
                           <p style="font-size:75%;" align="left"><i>A Camp Cluster refers to a group of IDP sites in close proximity with high levels of collaboration among member agencies. </i></p>
@@ -136,14 +136,14 @@
                     
                 </div>
 
-                <div  class="col-md-13"  data-step="6" data-intro="Click on these chart to filter by site environment or shelter composition" data-position="center">
+                <div  class="col-md-13"  >
 
 
-                        <div class="environmentp" id="cccm" class="dc-chart" align="center">
+                        <div class="environmentp" id="cccm" class="dc-chart" align="center" data-step="7" data-intro="This pie chart displays the number of individuals residing in Informal Settlements, Transit Centres or Planned camps." data-position="center">
                           <h4>Site type</h4>
-                        <p style="font-size:75%;"><i>CC: Collective Centre, IS: Informal Settlement, <br> TC: Transit Centre, PC: Planned camp </i></p>
+                        <p style="font-size:75%;"><i>IS: Informal Settlement, TC: Transit Centre,<br> PC: Planned camp </i></p>
                         </div>
-                     <div id="count-info"  align="center">
+                     <div id="count-info"  align="center" data-step="8" data-intro="As you select your categories for filtering, this field will provide the total individuals with a breakdown by men, women, boys and girls. This breakdown does not necessarily add up to the sum, as some data might be missing.">
                         <br><br>
                         <h4>Current Selection</h4>
                         <p>
@@ -156,6 +156,8 @@
                             <span id="totalwom" class="number-display"></span> women <br>
                             <span id="totalboy" class="number-display"></span> boys <br>
                             <span  id="totalgirl" class="number-display"></span> girls 
+                                <br><br>
+                                
                             </span>
                          </p>
                     </div>
@@ -164,16 +166,16 @@
                      
                 </div>
 
-                <div  class="col-md-14"  data-step="7" data-intro="Click on the map to filter by site">
+                <div  class="col-md-14"  data-step="9" data-intro="Click or zoom on the map to filter by site">
                     <div align="center"> <h4>Map: Location of the sites</h4>
-                      <p><small><i>Zoom on the map to filter sites. click on the pinpoint for more information <br>
+                      <p><small><i>Zoom on the map to filter sites. Click on the marker for more information <br>
                           For security reasons, please note that site coordinates are purposely imprecise.
                           </i></small></p></div>
                     <div  class="map" id="cccm"  align="left"> </div>
                     
                 </div>  
             </div>
-            
+                    </div>
 
  <!--             <div  class="row" id="cccm" >
 
@@ -454,7 +456,7 @@ function remove_empty_bins(source_group) {
       .group(facilitiesGroup)
       .width(540)
       .height(440)
-      .center([36.0503,38.2385])
+      .center([36.0503,37.6385])
       .zoom(7)
       .cluster(true)
       .filterByArea(true)
@@ -480,7 +482,7 @@ var colorScale2 = d3.scale.ordinal()
         .range(["#2a87cf", "#56A2DC", "#88BEE7", "#BBDAF1"]);
     
      var openelements = xf.dimension(function(d) { return d.shelter_cat; });
-  var openelementsGroup = openelements.group().reduceCount();
+  var openelementsGroup = openelements.group().reduceSum(function (d) { return d.individual; });
     
   dc.pieChart("#cccm .shelter",groupname)
         .dimension(openelements)
@@ -488,7 +490,7 @@ var colorScale2 = d3.scale.ordinal()
         .width(75)
         .height(75)
         .renderLabel(false)
-     .label(function(d) { return Math.floor(d.value / all.value() * 100) + "%"; })
+     .label(function(d) {   return Math.round((d.endAngle - d.startAngle) / Math.PI * 50) + '%';})
         .renderTitle(true)
         .colors(colorScale)
 ;
@@ -496,7 +498,7 @@ var colorScale2 = d3.scale.ordinal()
 
     
   var waters = xf.dimension(function(d) { return d.water_cat; });
-  var watersGroup = waters.group().reduceCount();
+  var watersGroup = waters.group().reduceSum(function (d) { return d.individual; });
     
   dc.pieChart("#cccm .waterp",groupname)
         .dimension(waters)
@@ -504,7 +506,7 @@ var colorScale2 = d3.scale.ordinal()
         .width(75)
         .height(75)
         .renderLabel(true)
-      .label(function(d) { return Math.floor(d.value / all.value() * 100) + "%"; })
+     .label(function(d) {   return Math.round((d.endAngle - d.startAngle) / Math.PI * 50) + '%';})
         .renderTitle(true)
       .colors(colorScale)
          .colorDomain([0,3,4]) ;
@@ -512,63 +514,62 @@ var colorScale2 = d3.scale.ordinal()
 
 
   var waterqs = xf.dimension(function(d) { return d.sanitation_cat; });
-  var waterqsGroup = waterqs.group().reduceCount();
-   
-    
+  var waterqsGroup = waterqs.group().reduceSum(function (d) { return d.individual; }); 
   dc.pieChart("#cccm .sanitation",groupname)
         .dimension(waterqs)
         .group(waterqsGroup)
         .width(75)
         .height(75)
         .renderLabel(true)
-     .label(function(d) { return Math.floor(d.value / all.value() * 100) + "%"; })
+     .label(function(d) {   return Math.round((d.endAngle - d.startAngle) / Math.PI * 50) + '%';})
         .renderTitle(true)
         .colors(colorScale)
          .colorDomain(colorScale);
     //   .ordering(function (p) { return -p.value; });
 
    var hazardss = xf.dimension(function(d) { return d.waste_cat; });
-  var hazardssGroup = hazardss.group().reduceCount();
+  var hazardssGroup = hazardss.group().reduceSum(function (d) { return d.individual; });
   dc.pieChart("#cccm .waster",groupname)
         .dimension(hazardss)
         .group(hazardssGroup)
         .width(75)
         .height(75)
         .renderLabel(true)
-     .label(function(d) { return Math.floor(d.value / all.value() * 100) + "%"; })
+     .label(function(d) {   return Math.round((d.endAngle - d.startAngle) / Math.PI * 50) + '%';})
         .renderTitle(true)
       .colors(colorScale)
          .colorDomain(colorScale);
     //    .ordering(function (p) { return -p.value; });
 
   var electrics = xf.dimension(function(d) { return d.NFI_cat; });
-  var electricsGroup = electrics.group().reduceCount();
+  var electricsGroup = electrics.group().reduceSum(function (d) { return d.individual; });
   dc.pieChart("#cccm .NFI",groupname)
         .dimension(electrics)
         .group(electricsGroup)
         .width(75)
         .height(75)
         .renderLabel(true)
-     .label(function(d) { return Math.floor(d.value / all.value() * 100) + "%"; })
+     .label(function(d) {   return Math.round((d.endAngle - d.startAngle) / Math.PI * 50) + '%';})
         .renderTitle(true)
       .colors(colorScale)
          .colorDomain(colorScale);
      //  .ordering(function (p) { return -p.value; });
     
   var miness = xf.dimension(function(d) { return d.Food_cat; });
-  var minessGroup = miness.group().reduceCount();
+  var minessGroup = miness.group().reduceSum(function (d) { return d.individual; });
   dc.pieChart("#cccm .food",groupname)
         .dimension(miness)
         .group(minessGroup)
         .width(75)
         .height(75)
         .renderLabel(true)
-       .label(function(d) { return Math.floor(d.value / all.value() * 100) + "%"; })
+     .label(function(d) {   return Math.round((d.endAngle - d.startAngle) / Math.PI * 50) + '%';})
         .renderTitle(true)
         .colors(colorScale)
          .colorDomain(colorScale);
     //    .ordering(function (p) { return -p.value; });
 
+    /* 
   var fightings = xf.dimension(function(d) { return d.fighting; });
   var fightingsGroup = fightings.group().reduceCount();
   dc.pieChart("#cccm .fightingp",groupname)
@@ -582,7 +583,8 @@ var colorScale2 = d3.scale.ordinal()
          .colorDomain([0,4]);
     //    .ordering(function (p) { return -p.value; });
 
-
+*/
+    
   var environments = xf.dimension(function(d) { return d.environment; });
   var environmentsGroup = environments.group().reduceSum(function (d) { return d.individual; }); //var governoratesByIndividual = governorates.group().reduceSum(function (d) { return d.individual; });
     
@@ -633,34 +635,35 @@ var colorScale2 = d3.scale.ordinal()
     */
      
 
-  var districts = xf.dimension(function(d) { return d.district; });
-  var districtsByIndividual = districts.group().reduceSum(function (d) { return d.individual; });
-
-  dc.rowChart("#cccm .districtp",groupname)
-        .dimension(districts)
-        .group(districtsByIndividual)
-        .width(200)
-        .height(285)
-        .renderLabel(true)
-        .ordering(function (p) { return -p.value;})
-        .colors(['#2a87cf'])
-        .elasticX(true)
-        .colorDomain([0,0])
-        .colorAccessor(function(d, i){return 1;})
-        .xAxis().ticks(4).tickFormat(d3.format("s"));
-
   var governorates = xf.dimension(function(d) { return d.governorate; });
   var governoratesByIndividual = governorates.group().reduceSum(function (d) { return d.individual; });
 
   dc.rowChart("#cccm .governoratep",groupname)
         .dimension(governorates)
         .group(governoratesByIndividual)
-        .width(200)
+        .width(190)
         .height(150)
         .elasticX(true)
         .renderLabel(true)
         .ordering(function (p) { return -p.value;})
         .colors(['#2a87cf'])
+        .colorDomain([0,0])
+        .colorAccessor(function(d, i){return 1;})
+        .xAxis().ticks(4).tickFormat(d3.format("s"));
+
+    
+  var districts = xf.dimension(function(d) { return d.district; });
+  var districtsByIndividual = districts.group().reduceSum(function (d) { return d.individual; });
+
+  dc.rowChart("#cccm .districtp",groupname)
+        .dimension(districts)
+        .group(districtsByIndividual)
+        .width(190)
+        .height(285)
+        .renderLabel(true)
+        .ordering(function (p) { return -p.value;})
+        .colors(['#2a87cf'])
+        .elasticX(true)
         .colorDomain([0,0])
         .colorAccessor(function(d, i){return 1;})
         .xAxis().ticks(4).tickFormat(d3.format("s"));
@@ -681,7 +684,7 @@ var colorScale2 = d3.scale.ordinal()
   dc.rowChart("#cccm .scorep",groupname)
         .dimension(scores)
         .group(scoresGroup)
-        .width(300)
+        .width(250)
         .height(405)
         .renderLabel(true)
         .renderTitle(true)
