@@ -139,11 +139,11 @@
                 <div  class="col-md-13"  >
 
 
-                        <div class="environmentp" id="cccm" class="dc-chart" align="center" data-step="7" data-intro="This pie chart displays the number of individuals residing in Informal Settlements, Transit Centres or Planned camps." data-position="center">
+                        <div class="environmentp" id="cccm" class="dc-chart" align="center" data-step="7" data-intro="Click on this pie chart to filter by number of individuals residing in Informal Settlements, Transit Centres or Planned camps." data-position="center">
                           <h4>Site type</h4>
                         <p style="font-size:75%;"><i>IS: Informal Settlement, TC: Transit Centre,<br> PC: Planned camp </i></p>
                         </div>
-                     <div id="count-info"  align="center" data-step="8" data-intro="As you select your categories for filtering, this field will provide the total individuals with a breakdown by men, women, boys and girls. This breakdown does not necessarily add up to the sum, as some data might be missing.">
+                     <div id="count-info"  align="center" data-step="8" data-intro="As you select your categories for filtering, this field will provide the total individuals with a breakdown by men, women, boys and girls in your selection. This breakdown does not necessarily add up to the sum, as some data might be missing.">
                         <br><br>
                         <h4>Current Selection</h4>
                         <p>
@@ -659,7 +659,7 @@ var colorScale2 = d3.scale.ordinal()
         .dimension(districts)
         .group(districtsByIndividual)
         .width(190)
-        .height(285)
+        .height(300)
         .renderLabel(true)
         .ordering(function (p) { return -p.value;})
         .colors(['#2a87cf'])
