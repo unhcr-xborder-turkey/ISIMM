@@ -40,7 +40,7 @@
     <div style="display: block;" class="container" id="dashboard">
 
         <div class="col-xs-12">
-            <a href="https://www.humanitarianresponse.info/operations/iraq/camp-coordination-management" target="_blank">
+            <a href="https://www.humanitarianresponse.info/en/operations/stima/camp-coordination-management" target="_blank">
                <img src="images/ISIMM.png" style="width: 100%"></a>
          </div>
 
@@ -450,7 +450,8 @@ function remove_empty_bins(source_group) {
   var facilities = xf.dimension(function(d) { return d.geo; });
   var facilitiesGroup = facilities.group().reduceCount();
 // var labelmap = xf.dimension(function(d) {return d.camp_name});
-    
+     var xtr = function(d,feature) { return feature.camp_name +" : "+feature.individual; };
+     
   dc.leafletMarkerChart("#cccm .map",groupname)
       .dimension(facilities)
       .group(facilitiesGroup)
@@ -465,11 +466,15 @@ function remove_empty_bins(source_group) {
  // .popup(function(d,feature) {
          //         return feature.properties.camp_name+" : "+d.value;
            //   })
-    //  .popup(function(feature) { return feature.properties.camp_name +" : "+feature.properties.neighbourhood; });
-//   .popup(function(feature) { return feature.properties.camp_name+" : "+feature.properties.individual; });
+ /*
+      var pop = l.popup()
+                .setcontent("Test")
+                .openOn(map);
+    */
+ .popup(function(d) { return d.camp_name+" : "+d.individual; });
        //sitear	neighbourhood	organisat	governorate	district	photo	environment	phone	household	men	women	boys	girls	individual
       //.clusterObject({ maxClusterRadius: 40, disableClusteringAtZoom:10,spiderfyOnMaxZoom: false,showCoverageOnHover: false})
-.popup();
+ // .popup();
 
 
 //water_access  water_quality   electric    openelement damage  hazards mines   fighting
