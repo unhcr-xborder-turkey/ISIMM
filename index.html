@@ -168,8 +168,8 @@
 
                 <div  class="col-md-14"  data-step="9" data-intro="Click or zoom on the map to filter by site">
                     <div align="center"> <h4>Map: Location of the sites</h4>
-                      <p><small><i>Zoom on the map to filter sites. Click on the marker for more information <br>
-                          For security reasons, please note that site coordinates are purposely imprecise.
+                      <p><small><i>For security reasons, please note that site coordinates are purposely imprecise. <br>
+                          Camp names are not provided in this dashboard. For further information, please contact the <a href="mailto:syria.cross.border@cccmcluster.org?Subject=ISIMM%20Information%20Request" target="_top"> CCCM Cluster</a>.
                           </i></small></p></div>
                     <div  class="map" id="cccm"  align="left"> </div>
                     
@@ -283,11 +283,9 @@
     <div class="col" align="left"> <small><a href="https://github.com/unhcr-iraq/Site-Assessment" target="_blank">Credit</a></small></div>
 
             <div class="col" align="right">
-                    <table>
-                  <tbody><tr>
-                    <td ><a href="https://twitter.com/intent/tweet?url=https://zanmat.github.io/ISIMM/" target="_blank"><img src="images/Twitter.png" style="height: 20px; width: 20px"></a></td>
-                </tr>
-                </tbody></table> 
+                  
+                   <a href="https://twitter.com/intent/tweet?url=https://zanmat.github.io/ISIMM/" target="_blank"><img src="images/Twitter.png" style="height: 20px; width: 20px"></a>
+              
                     </div>
             </div>
 </div>
@@ -450,7 +448,7 @@ function remove_empty_bins(source_group) {
   var facilities = xf.dimension(function(d) { return d.geo; });
   var facilitiesGroup = facilities.group().reduceCount();
 // var labelmap = xf.dimension(function(d) {return d.camp_name});
-     var xtr = function(d,feature) { return feature.camp_name +" : "+feature.individual; };
+   //  var xtr = function(d,feature) { return feature.camp_name +" : "+feature.individual; };
      
   dc.leafletMarkerChart("#cccm .map",groupname)
       .dimension(facilities)
@@ -471,7 +469,7 @@ function remove_empty_bins(source_group) {
                 .setcontent("Test")
                 .openOn(map);
     */
- .popup(function(d) { return d.camp_name+" : "+d.individual; });
+ .popup(function(d) { return d.cluster+" : "+d.individual; });
        //sitear	neighbourhood	organisat	governorate	district	photo	environment	phone	household	men	women	boys	girls	individual
       //.clusterObject({ maxClusterRadius: 40, disableClusteringAtZoom:10,spiderfyOnMaxZoom: false,showCoverageOnHover: false})
  // .popup();
@@ -701,7 +699,7 @@ var colorScale2 = d3.scale.ordinal()
         //.ordering(function (p) { return -p.value;})
         .xAxis().ticks(4).tickFormat(d3.format("s"));
     
-   
+   /*
    
 var camps = xf.dimension(function(d) { return d.camp_name; });
  var campsGroup = camps.group().reduceSum(function (d) {  return d.individual;}); 
@@ -727,6 +725,7 @@ var camps = xf.dimension(function(d) { return d.camp_name; });
       .colorAccessor(function(d, i){return 1;})
    //   .ordering(function (p) { return -p.value;})
       .yAxis().ticks(4).tickFormat(d3.format("s"));
+    */
     
 /* there are way too many camps to include
 
