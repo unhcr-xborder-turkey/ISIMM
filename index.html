@@ -442,9 +442,53 @@ function remove_empty_bins(source_group) {
     /*    
    dc.numberDisplay("#totalhous",groupname)
         .dimension(byMen)
-        .group(all);
-    */
+
     
+    
+    var facilities = xf.dimension(function(d) { return d.camp_name; });
+    var facilitiesGroup = facilities.group().reduceSum(
+    function(p, v) { // add
+        p.individual = v.individual;
+        p.geo = v.geo;
+        ++p.count;
+        return p;
+    },
+    function(p, v) { // remove
+        --p.count;
+        return p;
+    },
+    function() { // init
+        return {count: 0};
+    }
+);
+    
+     
+  dc.leafletMarkerChart("#cccm .map",groupname)
+      .dimension(facilities)
+      .group(facilitiesGroup)
+      .width(540)
+      .height(440)
+      .center([36.0503,37.6385])
+      .zoom(7)
+      .cluster(true)
+    // .filterByArea(true)
+    //  .featureKeyAccessor(function(feature) {return feature.properties.geo; })
+      .renderPopup(true)
+      .valueAccessor(function(kv) {
+        return kv.value.count;
+        })
+      .locationAccessor(function(kv) {
+        return kv.value.geo;
+        })
+      .popup(function(kv) {
+        return kv.key + " : " + kv.value.individual; });
+     })
+ // .popup(function(d,feature) {
+         //         return feature.properties.camp_name+" : "+d.value;
+           //   })
+            .group(all);
+    */
+
   var facilities = xf.dimension(function(d) { return d.geo; });
   var facilitiesGroup = facilities.group().reduceCount();
 // var labelmap = xf.dimension(function(d) {return d.camp_name});
@@ -460,11 +504,13 @@ function remove_empty_bins(source_group) {
       .cluster(true)
       .filterByArea(true)
     //  .featureKeyAccessor(function(feature) {return feature.properties.geo; })
-      .renderPopup(true)
+      .renderPopup(false)
  // .popup(function(d,feature) {
          //         return feature.properties.camp_name+" : "+d.value;
            //   })
- /*
+
+
+/*
       var pop = l.popup()
                 .setcontent("Test")
                 .openOn(map);
