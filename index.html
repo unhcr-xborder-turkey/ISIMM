@@ -444,8 +444,8 @@ var typeSite = xf.dimension(function(d) { return d.TypeSite; });
 
 
   // Map  
-   var facilities = xf.dimension(function(d) { return d.camp_name; });
-    var facilitiesGroup = facilities.group().reduce(
+   var camps = xf.dimension(function(d) { return d.camp_name; });
+    var campsGroup = camps.group().reduce(
     function(p, v) { // add
         p.individual = v.individual;
         p.geo = v.geo;
@@ -463,8 +463,8 @@ var typeSite = xf.dimension(function(d) { return d.TypeSite; });
     
      
   dc.leafletMarkerChart("#cccm .map",groupname)
-      .dimension(facilities)
-      .group(facilitiesGroup)
+      .dimension(camps)
+      .group(campsGroup)
       .width(540)
       .height(440)
       .center([36.0503,37.6385])
