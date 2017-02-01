@@ -129,7 +129,7 @@
   
                 
                 <div  class="col-md-2"  data-step="6" data-intro="Click on this bar chart to filter by Camp Cluster"  align="center">
-                    <div  class="cluster" id="cccm" class="dc-chart" align="center">
+                    <div  class="scorep" id="cccm" class="dc-chart" align="center">
                           <h4>Camp Clusters</h4>
                           <p style="font-size:75%;" align="center"><i>A Camp Cluster refers to a group of IDP sites in close proximity with high levels of collaboration among member agencies. </i></p>
                         </div>
@@ -139,7 +139,7 @@
                 <div  class="col-md-13"  >
 
 
-                        <div class="type_site" id="cccm" class="dc-chart" align="center" data-step="7" data-intro="Click on this pie chart to filter by number of individuals residing in Informal Settlements, Transit Centres or Planned camps." data-position="center">
+                        <div class="environmentp" id="cccm" class="dc-chart" align="center" data-step="7" data-intro="Click on this pie chart to filter by number of individuals residing in Informal Settlements, Transit Centres or Planned camps." data-position="center">
                           <h4>Site type</h4>
                         <p style="font-size:75%;"><i>IS: Informal Settlement, TC: Transit Centre,<br> PC: Planned camp </i></p>
                         </div>
@@ -177,8 +177,107 @@
             </div>
                     </div>
 
- 
+ <!--             <div  class="row" id="cccm" >
 
+                <div class="col-md-3" >
+                        <div class="householdnump" id="cccm" class="dc-chart" >
+                              <h4>Individuals / Households</h4>
+                              <p><small><i>Average number of individuals per household per site</i></small></p>
+                        </div>
+              </div>
+                <div class="col-md-9" >
+                <h4>Filter on Shelter type within the sites</h4>
+                <p><small><i>Based on site observation by enumerators</i></small></p>
+                    <div class="col-md-3" >
+                        <div class="unfinishedp" id="cccm"  class="dc-chart" >
+                          <p><small>Sites that include <strong>unfinished buildings</strong> (buildings under construction)</small></p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" >
+                        <div class="opensitep" id="cccm" class="dc-chart" >
+                          <p><small>Sites that include <strong>open accommodations</strong> (tents or any improvised shelter)</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="row" id="cccm"   data-step="8" data-intro="Filter results by particpation organisation" data-position="left">
+                    <h4>Participating Organisations</h4>
+                    <div  class="col-md-8">
+                      <p> The CCCM cluster coordinates work on the ground from various organisations.<br >
+                      This assessment has been made possible through the contribution of various partners.</p>
+
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td valign="middle">
+                                        <a href="http://drc.dk/relief-work/where-we-work/middle-east/iraq/" target="_blank">
+                                        <img src="images/partner/drc.jpg" ></a>
+                                    </td>
+                                    <td valign="middle">
+                                        <a href="http://www.ifrc.org/en/news-and-media/press-releases/middle-east-and-north-africa/iraq/" target="_blank">
+                                        <img src="images/partner/frc.jpg" ></a>
+                                    </td>
+                                    <td valign="middle">
+                                        <a href="http://www.harikar.org/new/" target="_blank">
+                                        <img src="images/partner/harikar.jpg" ></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="middle">
+                                        <a href="http://iomiraq.net/news" target="_blank">
+                                        <img src="images/partner/iom.jpg" ></a>
+                                    </td>
+                                    <td valign="middle">
+                                        <a href="http://www.reach-initiative.org/tag/iraq" target="_blank">
+                                        <img src="images/partner/reach-initiative.jpg" ></a>
+                                    </td>
+                                    <td valign="middle">
+                                        <a href="http://www.unhcr.org/pages/49e486426.html" target="_blank">
+                                        <img src="images/partner/unhcr.jpg" ></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="orgap" class="col-md-4 dc-chart" >
+
+                      <p><small>Number of sites assessed per organisation (based on phase 1 assessment, new sites assessed by REACH)</small></p>
+                    </div>
+            </div>
+
+-->
+<!-- 
+           <div class='row'>
+            <div class='col-md-12'>
+              <table class='table table-hover' id='dc-table-graph'>
+                <thead>
+                  <tr class='header'>
+                    <th>Governorates</th>
+                    <th>District</th>
+                    <th>Household (num)</th>
+                    <th>Individual(num)</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+           </div>
+
+
+
+  
+    <div class="row" id="cccm" data-position="left">
+     <div  class="col-md-14"  align="center">
+       
+         <div class="camps" class="col-md-4 dc-chart" >  <h4>Test</h4> </div>
+        </div>
+    </div> 
+
+        -->
             
         <div class="row"> 
     <div class="col" align="left"> <small><a href="https://github.com/unhcr-iraq/Site-Assessment" target="_blank">Credit</a></small></div>
@@ -220,10 +319,59 @@ d3.csv("data/ISIMM4.csv", function(data) {
   drawMarkerArea(data);
 });
 
-    
-function drawMarkerArea(data) {
+/*
+function regroup(dim, cols) {
+    var _groupAll = dim.groupAll().reduce(
+        function(p, v) { // add
+            cols.forEach(function(c) {
+                p[c] += v[c];
+            });
+            return p;
+        },
+        function(p, v) { // remove
+            cols.forEach(function(c) {
+                p[c] -= v[c];
+            });
+            return p;
+        },
+        function() { // init
+            var p = {};
+            cols.forEach(function(c) {
+                p[c] = 0;
+            });
+            return p;
+        });
+    return {
+        all: function() {
+            // or _.pairs, anything to turn the object into an array
+            return d3.map(_groupAll.value()).entries();
+        }
+    };
+}
+*/
 
-    
+
+function drawMarkerArea(data) {
+//function drawMarkerSelect(data) {
+
+/*
+  data = [];
+    data.filter(function(d) {
+    return d.geo;
+    }).forEach(function(d) {
+       d.geo = d.geo.split(",");
+       d.sitear=+d.sitear;
+       d.neighbourhood=+d.neighbourhood;
+       d.marker = new L.Marker(new L.LatLng(d.geo[0], d.geo[1]),{
+                title: d.sitear,
+                icon: new L.icon({"iconUrl":d.iconUrl,iconSize:[32, 32],iconAnchor:[16,0]}),
+                clickable: true,
+                draggable: false
+            });
+       d.marker.data=d;
+    });
+    delete data;
+*/
 
 function remove_empty_bins(source_group) {
     return {
@@ -253,6 +401,12 @@ function remove_empty_bins(source_group) {
         .group(byIndividualGroup);
 
 
+  var byHousehold = xf.dimension(function(d) { return d.household; });
+  var byHouseholdGroup = byHousehold.groupAll().reduceSum(function (d) { return d.household; });
+   dc.numberDisplay("#totalhou",groupname)
+       .valueAccessor(function(d){return +d})
+        .group(byHouseholdGroup);
+        
   var byMen = xf.dimension(function(d) { return d.men; });
   var byMenGroup = byMen.groupAll().reduceSum(function (d) { return d.men; });
    dc.numberDisplay("#totalmen",groupname)
@@ -278,6 +432,92 @@ function remove_empty_bins(source_group) {
        .valueAccessor(function(d){return +d})
         .group(byGirlGroup);
 
+  /*
+  var byMen = xf.reduceSum(function (d) { return d.men; });
+  var byWomen  = xf.reduceSum(function (d) { return d.women; });
+  var byBoy =  xf.reduceSum(function (d) { return d.boys; });
+  var byGirl = xf.reduceSum(function (d) { return d.girls; });
+  */
+
+    /*    
+   dc.numberDisplay("#totalhous",groupname)
+        .dimension(byMen)
+
+        */
+    
+   var facilities = xf.dimension(function(d) { return d.camp_name; });
+    var facilitiesGroup = facilities.group().reduce(
+    function(p, v) { // add
+        p.individual = v.individual;
+        p.geo = v.geo;
+        ++p.count;
+        return p;
+    },
+    function(p, v) { // remove
+        --p.count;
+        return p;
+    },
+    function() { // init
+        return {count: 0};
+    }
+);
+    
+     
+  dc.leafletMarkerChart("#cccm .map",groupname)
+      .dimension(facilities)
+      .group(facilitiesGroup)
+      .width(540)
+      .height(440)
+      .center([36.0503,37.6385])
+      .zoom(7)
+      .cluster(true)
+    // .filterByArea(true)
+    //  .featureKeyAccessor(function(feature) {return feature.properties.geo; })
+      .renderPopup(true)
+      .valueAccessor(function(kv) {
+        return kv.value.count;
+    })
+    .locationAccessor(function(kv) {
+        return kv.value.geo;
+    })
+    .popup(function(kv) {
+        return kv.key + " : " + kv.value.individual;
+    });
+
+/*
+  var facilities = xf.dimension(function(d) { return d.geo; });
+  var facilitiesGroup = facilities.group().reduceCount();
+// var labelmap = xf.dimension(function(d) {return d.camp_name});
+   //  var xtr = function(d,feature) { return feature.camp_name +" : "+feature.individual; };
+     
+  dc.leafletMarkerChart("#cccm .map",groupname)
+      .dimension(facilities)
+      .group(facilitiesGroup)
+      .width(540)
+      .height(440)
+      .center([36.0503,37.6385])
+      .zoom(7)
+      .cluster(true)
+      .filterByArea(true)
+    //  .featureKeyAccessor(function(feature) {return feature.properties.geo; })
+      .renderPopup(false)
+ // .popup(function(d,feature) {
+         //         return feature.properties.camp_name+" : "+d.value;
+           //   })
+
+
+
+      var pop = l.popup()
+                .setcontent("Test")
+                .openOn(map);
+
+ .popup(function(d) { return d.cluster+" : "+d.individual; });
+       //sitear	neighbourhood	organisat	governorate	district	photo	environment	phone	household	men	women	boys	girls	individual
+      //.clusterObject({ maxClusterRadius: 40, disableClusteringAtZoom:10,spiderfyOnMaxZoom: false,showCoverageOnHover: false})
+ // .popup();
+    */
+
+//water_access  water_quality   electric    openelement damage  hazards mines   fighting
  var colorScale = d3.scale.ordinal()
         .domain(["1. Fully covered", "2. Mostly covered", "3. Partially covered", "4. Not covered - N/A"])
         .range(["#2572ad", "#4D9CD8", "#FC7E77", "#de4c44"]);
@@ -299,7 +539,7 @@ var colorScale2 = d3.scale.ordinal()
         .renderTitle(true)
         .colors(colorScale)
 ;
-
+     //   .ordering(function (p) { return -p.value; });
 
     
   var waters = xf.dimension(function(d) { return d.water_cat; });
@@ -357,7 +597,7 @@ var colorScale2 = d3.scale.ordinal()
      .label(function(d) {   return Math.round((d.endAngle - d.startAngle) / Math.PI * 50) + '%';})
         .renderTitle(true)
       .colors(colorScale)
-         .colorDomain([0,3,4]) ;
+         .colorDomain(colorScale);
      //  .ordering(function (p) { return -p.value; });
     
   var miness = xf.dimension(function(d) { return d.Food_cat; });
@@ -372,9 +612,73 @@ var colorScale2 = d3.scale.ordinal()
         .renderTitle(true)
         .colors(colorScale)
          .colorDomain(colorScale);
- 
+    //    .ordering(function (p) { return -p.value; });
+
+    /* 
+  var fightings = xf.dimension(function(d) { return d.fighting; });
+  var fightingsGroup = fightings.group().reduceCount();
+  dc.pieChart("#cccm .fightingp",groupname)
+        .dimension(fightings)
+        .group(fightingsGroup)
+        .width(95)
+        .height(95)
+        .renderLabel(false)
+        .renderTitle(true)
+     .colors(colorScale)
+         .colorDomain([0,4]);
+    //    .ordering(function (p) { return -p.value; });
+
+*/
     
-  
+  var environments = xf.dimension(function(d) { return d.environment; });
+  var environmentsGroup = environments.group().reduceSum(function (d) { return d.individual; }); //var governoratesByIndividual = governorates.group().reduceSum(function (d) { return d.individual; });
+    
+  dc.pieChart("#cccm .environmentp",groupname)
+        .dimension(environments)
+        .group(environmentsGroup)
+        .width(175)
+        .height(175)
+        .renderLabel(true)
+        .renderTitle(true)
+        .colors(colorScale2)
+        .ordering(function (p) { return -p.value; });
+
+
+  var classs = xf.dimension(function(d) { return d.class; });
+  var classsGroup = classs.group().reduceCount();
+  dc.rowChart("#cccm .classp",groupname)
+        .dimension(classs)
+        .group(classsGroup)
+        .width(200)
+        .height(219)
+        .renderLabel(true)
+        .renderTitle(true)
+        .colors(['#2a87cf'])
+        .colorDomain([0,0])
+        .elasticX(true)
+        .colorAccessor(function(d, i){return 1;})
+        .xAxis().ticks(4).tickFormat(d3.format("s"));
+       // .ordering(function (p) { return -p.value;});
+
+/*
+  var types = xf.dimension(function(d) { return d.camp_name; });
+  var typesGroup = types.group().reduceSum(function (d) { return d.individual; });
+    
+  dc.rowChart("#cccm .orgap",groupname)
+        .dimension(types)
+        .group(typesGroup)
+        .elasticX(true)
+        .width(350)
+        .height(200)
+        .renderLabel(true)
+        .renderTitle(true)
+        .colors(['#2a87cf'])
+        .colorDomain([0,0])
+        .colorAccessor(function(d, i){return 1;})
+.xAxis().ticks(5);       // .ordering(function (p) { return -p.value;});
+
+    */
+     
 
   var governorates = xf.dimension(function(d) { return d.governorate; });
   var governoratesByIndividual = governorates.group().reduceSum(function (d) { return d.individual; });
@@ -409,14 +713,22 @@ var colorScale2 = d3.scale.ordinal()
         .colorAccessor(function(d, i){return 1;})
         .xAxis().ticks(4).tickFormat(d3.format("s"));
 
+// it doesn't really matter what you index the dimension on,
+// because you won't be able to filter on this dimension
+// we just need something to call .groupAll on.
+//Improvised_Shelter    Tent    Individual_mud_building Individual_mix_building Individual_concrete_building
+//  Shop    Apartment_block Under_construction
 
 
- var cluster = xf.dimension(function(d) { return d.cluster; });
- var clusterGroup = cluster.group().reduceSum(function (d) {  return d.individual;}); 
+ //    var accoms = xf.dimension(function(r) { return r.Improvised_Shelter; });
+ //    var accomsGroup = regroup(accoms, ['Improvised_Shelter', 'Tent', 'Individual_mud_building', 'Individual_mix_building', 'Individual_concrete_building', 'Shop', 'Apartment_block Under_construction']);
 
-  dc.rowChart("#cccm .cluster",groupname)
-        .dimension(cluster)
-        .group(clusterGroup)
+ var scores = xf.dimension(function(d) { return d.cluster; });
+ var scoresGroup = scores.group().reduceSum(function (d) {  return d.individual;}); 
+
+  dc.rowChart("#cccm .scorep",groupname)
+        .dimension(scores)
+        .group(scoresGroup)
         .width(250)
         .height(445)
         .renderLabel(true)
@@ -429,62 +741,142 @@ var colorScale2 = d3.scale.ordinal()
         //.ordering(function (p) { return -p.value;})
         .xAxis().ticks(4).tickFormat(d3.format("s"));
     
-var typeSite = xf.dimension(function(d) { return d.TypeSite; });
-  var typeSiteGroup = typeSite.group().reduceSum(function (d) { return d.individual; }); //var governoratesByIndividual = governorates.group().reduceSum(function (d) { return d.individual; });
-    
-  dc.pieChart("#cccm .type_site",groupname)
-        .dimension(typeSite)
-        .group(typeSiteGroup)
-        .width(175)
-        .height(175)
+   /*
+   
+var camps = xf.dimension(function(d) { return d.camp_name; });
+ var campsGroup = camps.group().reduceSum(function (d) {  return d.individual;}); 
+    var filteredcampsGroup = remove_empty_bins(campsGroup);
+
+  dc.barChart("#cccm .camps",groupname)
+        .dimension(camps)
+        .group(campsGroup)
+        .width(1200)
+        .height(205)
+        .x(d3.scale.ordinal(campsGroup))
+        .xUnits(dc.units.ordinal)
+        .y(d3.scale.linear().domain([0, 10000]))
+  
+        .brushOn(false)
         .renderLabel(true)
         .renderTitle(true)
-        .colors(colorScale2)
+        .colors(['#2a87cf'])
+        .colorDomain([0,0])
+        .elasticY(true)
+  .elasticX(true)
+      //.ordering(function (p) { return -p.value;})
+      .colorAccessor(function(d, i){return 1;})
+   //   .ordering(function (p) { return -p.value;})
+      .yAxis().ticks(4).tickFormat(d3.format("s"));
+    */
+    
+/* there are way too many camps to include
+
+ dc.pieChart("#cccm .fightingp",groupname)
+        .dimension(fightings)
+        .group(fightingsGroup)
+        .width(95)
+        .height(95)
+        .renderLabel(true)
+        .renderTitle(true)
+     .colors(colorScale)
+         .colorDomain([0,4]);
+
+ var clusters = xf.dimension(function(d) { return d.cluster; });
+ var clustersGroup = accoms.group().reduceCount(function (d) { return d.cluster; });
+
+  dc.rowChart("#cccm .accomp",groupname)
+        .dimension(clusters)
+        .group(clustersGroup)
+        .width(220)
+        .height(205)
+        .renderLabel(true)
+        .renderTitle(true)
+        .colors(['#3182bd'])
+        .colorDomain([0,0])
+        .colorAccessor(function(d, i){return 1;})
+        //.ordering(function (p) { return -p.value;})
+        .xAxis().ticks(4).tickFormat(d3.format("s"));
+
+*/
+
+
+ var householdnums = xf.dimension(function(d) { return d.householdnum; });
+ var householdnumsGroup = householdnums.group().reduceCount();
+  
+  dc.pieChart("#cccm .householdnump",groupname)
+        .dimension(householdnums)
+        .group(householdnumsGroup)
+        .width(115)
+        .height(115)
+		.height(115)
+        .renderLabel(true)
+    //    .ordering(function (p) { return -p.value; })
+        .renderTitle(true);
+
+
+//"opensite","abandonned","unfinished",
+
+ var unfinisheds = xf.dimension(function(d) { return d.unfinished; });
+ var unfinishedsGroup = unfinisheds.group().reduceCount();
+  dc.pieChart("#cccm .unfinishedp",groupname)
+        .dimension(unfinisheds)
+        .group(unfinishedsGroup)
+        .width(95)
+        .height(95)
+        .colors(['#D9FAEF', /* no */
+                  '#F5C34E']) /* yes */
+        .renderLabel(true)
+    //    .ordering(function (p) { return -p.value; })
+        .renderTitle(true);
+
+ var opensites = xf.dimension(function(d) { return d.opensite; });
+ var opensitesGroup = opensites.group().reduceCount();
+  dc.pieChart("#cccm .opensitep",groupname)
+        .dimension(opensites)
+        .group(opensitesGroup)
+        .width(95)
+        .height(95)
+        .colors(['#D9FAEF', /* no */
+                  '#F5C34E']) /* yes */
+        .renderLabel(true)
+    //    .ordering(function (p) { return -p.value; })
+        .renderTitle(true);
+
+ var abandonneds = xf.dimension(function(d) { return d.abandonned; });
+ var abandonnedsGroup = abandonneds.group().reduceCount();
+  dc.pieChart("#cccm .abandonnedp",groupname)
+        .dimension(abandonneds)
+        .group(abandonnedsGroup)
+        .width(95)
+        .height(95)
+        .colors(['#D9FAEF', /* no */
+                  '#F5C34E']) /* yes */
+        .renderLabel(true)
+        .renderTitle(true)
         .ordering(function (p) { return -p.value; });
 
 
-  // Map  
-   var facilities = xf.dimension(function(d) { return d.camp_name; });
-    var facilitiesGroup = facilities.group().reduce(
-    function(p, v) { // add
-        p.individual = v.individual;
-        p.geo = v.geo;
-        ++p.count;
-        return p;
-    },
-    function(p, v) { // remove
-        --p.count;
-        return p;
-    },
-    function() { // init
-        return {count: 0};
-    }
-);
-    
-     
-  dc.leafletMarkerChart("#cccm .map",groupname)
-      .dimension(facilities)
-      .group(facilitiesGroup)
-      .width(540)
-      .height(440)
-      .center([36.0503,37.6385])
-      .zoom(7)
-      .cluster(true)
-    // .filterByArea(true)
-    //  .featureKeyAccessor(function(feature) {return feature.properties.geo; })
-      .renderPopup(true)
-      .valueAccessor(function(kv) {
-        return kv.value.count;
-    })
-    .locationAccessor(function(kv) {
-        return kv.value.geo;
-    })
-    .popup(function(kv) {
-        return kv.key + " Camp : " + kv.value.individual + " individuals.";
-    });
 
 
-     
+  // Table
+  /*
+  dc.dataTable("#dc-table-graph",groupname)
+    .width(960).height(800)
+    .dimension(governorates)
+    .group(function(d) { return "Sites Table" })
+    .size(30)
+    .columns([
+      function(d) { return d.governorate; },
+      function(d) { return d.district; },
+      function(d) { return d.household; },
+      function(d) { return d.individual; }
+    ])
+    .sortBy(function(d){ return d.governorate; })
+    .order(d3.ascending)
+    .renderlet(function (table) { table.selectAll(".dc-table-group").classed("info", true); });
+*/
+
+
 
 $('#reset').on('click', function (){
   dc.filterAll(groupname);
