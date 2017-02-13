@@ -57,7 +57,7 @@
                     
                 </div>
                 <div class="col-md-5" align="center">
-                 <h4>Filter on conditions within the sites</h4>
+                 <h4>Filter on conditions within the sites (December 2016)</h4>
                 </div>
                 
                 <div class="col-md-2"  data-step="1" data-intro="Use the reset button at any time to delete all your filters" data-position="center">
@@ -107,7 +107,7 @@
 
 
 
-            <div class="row"  align="center" data-step="3" data-intro="All of these charts display information based on the number of individuals by location. Again, you can combine as many filters as you want."> <h4>Filter on location, status and composition of the sites</h4>
+            <div class="row"  align="center" data-step="3" data-intro="All of these charts display information based on the number of individuals by location. Again, you can combine as many filters as you want."> <h4>Filter on location, status and composition of the sites </h4>
         <p style="font-size:85%;" align="center">
                          <i>All charts relate to number of individuals.  </i> </p>
 
@@ -115,7 +115,7 @@
 
             <div class="row" id="cccm">
 
-                <div class="col-md-2" >
+                <div class="col-md-2 colheightbars" >
                     <div class="governoratep" class="col-xs-6 dc-chart" data-step="4" data-intro="Click on this bar chart to filter by governorate." data-position="right" align="center">
                       <h4>Governorates</h4>
                       
@@ -213,7 +213,7 @@ var numberFormat = d3.format(",f");
 
 
 
-d3.csv("data/ISIMM4.csv", function(data) {
+d3.csv("data/ISIMM5.csv", function(data) {
  // drawMarkerSelect(data);
   drawMarkerArea(data);
 });
