@@ -57,7 +57,7 @@
                     
                 </div>
                 <div class="col-md-5" align="center">
-                 <h4>Filter on conditions within the sites (December 2016)</h4>
+                 <h4>Filter on conditions within the sites (February 2017)</h4>
                 </div>
                 
                 <div class="col-md-2"  data-step="1" data-intro="Use the reset button at any time to delete all your filters" data-position="center">
@@ -213,7 +213,7 @@ var numberFormat = d3.format(",f");
 
 
 
-d3.csv("data/ISIMM5.csv", function(data) {
+d3.csv("data/ISIMMFebruary.csv", function(data) {
  // drawMarkerSelect(data);
   drawMarkerArea(data);
 });
@@ -284,7 +284,8 @@ var colorScale2 = d3.scale.ordinal()
         .domain(["IS", "PC", "TC", "CC"])
         .range(["#2a87cf", "#56A2DC", "#88BEE7", "#BBDAF1"]);
     
-     var openelements = xf.dimension(function(d) { return d.shelter_cat; });
+
+    var openelements = xf.dimension(function(d) { return d.shelter_cat; });
   var openelementsGroup = openelements.group().reduceSum(function (d) { return d.individual; });
     
   dc.pieChart("#cccm .shelter",groupname)
@@ -295,9 +296,7 @@ var colorScale2 = d3.scale.ordinal()
         .renderLabel(false)
      .label(function(d) {   return Math.round((d.endAngle - d.startAngle) / Math.PI * 50) + '%';})
         .renderTitle(true)
-        .colors(colorScale)
-;
-
+        .colors(colorScale);
 
     
   var waters = xf.dimension(function(d) { return d.water_cat; });
