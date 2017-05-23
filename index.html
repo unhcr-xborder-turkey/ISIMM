@@ -57,7 +57,7 @@
                     
                 </div>
                 <div class="col-md-5" align="center">
-                 <h4><strong>Filter on conditions within the sites (March 2017)</strong></h4>
+                 <h4><strong>Filter on conditions within the sites (April 2017)</strong></h4>
                 </div>
                 
                 <div class="col-md-2"  data-step="1" data-intro="Use the reset button at any time to delete all your filters" data-position="center">
@@ -213,7 +213,7 @@ var numberFormat = d3.format(",f");
 
 
 
-d3.csv("data/ISIMMMarch.csv", function(data) {
+d3.csv("data/ISIMMApril.csv", function(data) {
  // drawMarkerSelect(data);
   drawMarkerArea(data);
 });
@@ -311,7 +311,7 @@ var colorScale2 = d3.scale.ordinal()
      .label(function(d) {   return Math.round((d.endAngle - d.startAngle) / Math.PI * 50) + '%';})
         .renderTitle(true)
       .colors(colorScale)
-         .colorDomain([0,3,4]) ;
+         .colorDomain([colorScale]) ;
     //   .ordering(function (p) { return -p.value; });
 
 
@@ -354,7 +354,7 @@ var colorScale2 = d3.scale.ordinal()
      .label(function(d) {   return Math.round((d.endAngle - d.startAngle) / Math.PI * 50) + '%';})
         .renderTitle(true)
       .colors(colorScale)
-         .colorDomain([0,3,4]) ;
+         .colorDomain([colorScale]) ;
      //  .ordering(function (p) { return -p.value; });
     
   var miness = xf.dimension(function(d) { return d.Food_cat; });
