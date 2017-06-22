@@ -57,7 +57,7 @@
                     
                 </div>
                 <div class="col-md-5" align="center">
-                 <h4><strong>Filter on conditions within the sites (April 2017)</strong></h4>
+                 <h4><strong>Filter on conditions within the sites (May 2017)</strong></h4>
                 </div>
                 
                 <div class="col-md-2"  data-step="1" data-intro="Use the reset button at any time to delete all your filters" data-position="center">
@@ -156,7 +156,9 @@
                            <img src="images/woman.svg" alt="SITE" height="30px" width="30px"> <span id="totalwom" class="number-display"></span> women <br>
                            <img src="images/boy.svg" alt="SITE" height="30px" width="30px"> <span id="totalboy" class="number-display"></span> boys <br>
                            <img src="images/girl.svg" alt="SITE" height="30px" width="30px"> <span  id="totalgirl" class="number-display"></span> girls 
-                                <br><br>
+                                <br>
+                            <!-- <p style="font-size:75%;"><i>Because of limited data, the total of men, women, boys and girls might not always match the overall total of IDPs. </i></p> --> 
+                         <br>
                                 
                             </span>
                          </p>
@@ -213,7 +215,7 @@ var numberFormat = d3.format(",f");
 
 
 
-d3.csv("data/ISIMMApril.csv", function(data) {
+d3.csv("data/ISIMMMay.csv", function(data) {
  // drawMarkerSelect(data);
   drawMarkerArea(data);
 });
