@@ -280,7 +280,7 @@ function remove_empty_bins(source_group) {
 
  var colorScale = d3.scale.ordinal()
         .domain(["1. Fully covered", "2. Mostly covered", "3. Partially covered", "4. Not covered - N/A"])
-        .range(["#2572ad", "#4D9CD8", "#FC7E77", "#de4c44"]);
+        .range(["#de4c44", "#2572ad", "#4D9CD8", "#FC7E77"]);
     
 var colorScale2 = d3.scale.ordinal()
         .domain(["IS", "PC", "TC", "CC"])
@@ -298,7 +298,7 @@ var colorScale2 = d3.scale.ordinal()
         .renderLabel(false)
      .label(function(d) {   return Math.round((d.endAngle - d.startAngle) / Math.PI * 50) + '%';})
         .renderTitle(true)
-        .colors(colorScale);
+        .colors(["#de4c44", "#2572ad", "#4D9CD8", "#FC7E77", "#de4c44"]);
 
     
   var waters = xf.dimension(function(d) { return d.water_cat; });
