@@ -57,7 +57,7 @@
                     
                 </div>
                 <div class="col-md-5" align="center">
-                 <h4><strong>Filter on conditions within the sites (July 2017)</strong></h4>
+                 <h4><strong>Filter on conditions within the sites (August 2017)</strong></h4>
                 </div>
                 
                 <div class="col-md-2"  data-step="1" data-intro="Use the reset button at any time to delete all your filters" data-position="center">
@@ -215,7 +215,7 @@ var numberFormat = d3.format(",f");
 
 
 
-d3.csv("data/ISIMMJuly.csv", function(data) {
+d3.csv("data/ISIMMAugust.csv", function(data) {
  // drawMarkerSelect(data);
   drawMarkerArea(data);
 });
@@ -280,7 +280,7 @@ function remove_empty_bins(source_group) {
 
  var colorScale = d3.scale.ordinal()
         .domain(["1. Fully covered", "2. Mostly covered", "3. Partially covered", "4. Not covered - N/A"])
-        .range(["#de4c44", "#2572ad", "#4D9CD8", "#FC7E77"]);
+        .range(["#2572ad", "#4D9CD8", "#FC7E77","#de4c44"]);
     
 var colorScale2 = d3.scale.ordinal()
         .domain(["IS", "PC", "TC", "CC"])
@@ -298,7 +298,7 @@ var colorScale2 = d3.scale.ordinal()
         .renderLabel(false)
      .label(function(d) {   return Math.round((d.endAngle - d.startAngle) / Math.PI * 50) + '%';})
         .renderTitle(true)
-        .colors(["#de4c44", "#2572ad", "#4D9CD8", "#FC7E77", "#de4c44"]);
+        .colors(["#2572ad", "#4D9CD8", "#FC7E77", "#de4c44"]);
 
     
   var waters = xf.dimension(function(d) { return d.water_cat; });
