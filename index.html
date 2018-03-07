@@ -312,8 +312,7 @@ var colorScale2 = d3.scale.ordinal()
         .renderLabel(true)
      .label(function(d) {   return Math.round((d.endAngle - d.startAngle) / Math.PI * 50) + '%';})
         .renderTitle(true)
-      .colors(colorScale)
-         .colorDomain([colorScale]) ;
+      .colors(["#2572ad", "#4D9CD8", "#de4c44"]);
     //   .ordering(function (p) { return -p.value; });
 
 
@@ -327,8 +326,7 @@ var colorScale2 = d3.scale.ordinal()
         .renderLabel(true)
      .label(function(d) {   return Math.round((d.endAngle - d.startAngle) / Math.PI * 50) + '%';})
         .renderTitle(true)
-        .colors(colorScale)
-         .colorDomain(colorScale);
+        .colors(["#2572ad", "#4D9CD8", "#FC7E77", "#de4c44"]);
     //   .ordering(function (p) { return -p.value; });
 
    var hazardss = xf.dimension(function(d) { return d.waste_cat; });
@@ -342,7 +340,7 @@ var colorScale2 = d3.scale.ordinal()
      .label(function(d) {   return Math.round((d.endAngle - d.startAngle) / Math.PI * 50) + '%';})
         .renderTitle(true)
       .colors(colorScale)
-         .colorDomain(colorScale);
+         .colors(["#2572ad", "#4D9CD8", "#FC7E77", "#de4c44"]);
     //    .ordering(function (p) { return -p.value; });
 
   var electrics = xf.dimension(function(d) { return d.NFI_cat; });
