@@ -57,7 +57,7 @@
                     
                 </div>
                 <div class="col-md-5" align="center">
-                 <h4><strong>Filter on conditions within the sites (December 2018)</strong></h4>
+                 <h4><strong>Filter on conditions within the sites (Febbraio 2019)</strong></h4>
                 </div>
                 
                 <div class="col-md-2"  data-step="1" data-intro="Use the reset button at any time to delete all your filters" data-position="center">
@@ -215,7 +215,7 @@ var numberFormat = d3.format(",f");
 
 
 
-d3.csv("data/ISIMM_2018December.csv", function(data) {
+d3.csv("data/ISIMM_2019February.csv", function(data) {
  // drawMarkerSelect(data);
   drawMarkerArea(data);
 });
@@ -298,7 +298,7 @@ var colorScale2 = d3.scale.ordinal()
         .renderLabel(false)
      .label(function(d) {   return Math.round((d.endAngle - d.startAngle) / Math.PI * 50) + '%';})
         .renderTitle(true)
-        .colors(["#2572ad","#2572ad", "#4D9CD8", "#FC7E77", "#de4c44"]);
+        .colors(["#2572ad", "#4D9CD8", "#FC7E77", "#de4c44","#2572ad"]);
 
     
   var waters = xf.dimension(function(d) { return d.water_cat; });
@@ -312,7 +312,7 @@ var colorScale2 = d3.scale.ordinal()
         .renderLabel(true)
      .label(function(d) {   return Math.round((d.endAngle - d.startAngle) / Math.PI * 50) + '%';})
         .renderTitle(true)
-      .colors(["#2572ad","#2572ad", "#4D9CD8", "#de4c44"]);
+      .colors(["#2572ad","#4D9CD8", "#de4c44", "#de4c44"]);
     //   .ordering(function (p) { return -p.value; });
 
 
@@ -326,7 +326,7 @@ var colorScale2 = d3.scale.ordinal()
         .renderLabel(true)
      .label(function(d) {   return Math.round((d.endAngle - d.startAngle) / Math.PI * 50) + '%';})
         .renderTitle(true)
-        .colors(["#2572ad",  "#2572ad", "#4D9CD8","#FC7E77",   "#de4c44"]);
+        .colors(["#2572ad", "#4D9CD8","#FC7E77",   "#de4c44"]);
     //   .ordering(function (p) { return -p.value; });
 
    var hazardss = xf.dimension(function(d) { return d.waste_cat; });
@@ -340,7 +340,7 @@ var colorScale2 = d3.scale.ordinal()
      .label(function(d) {   return Math.round((d.endAngle - d.startAngle) / Math.PI * 50) + '%';})
         .renderTitle(true)
       .colors(colorScale)
-         .colors(["#2572ad",  "#2572ad", "#4D9CD8", "#FC7E77", "#de4c44"]);
+         .colors(["#2572ad", "#4D9CD8", "#FC7E77", "#de4c44"]);
     //    .ordering(function (p) { return -p.value; });
 
   var electrics = xf.dimension(function(d) { return d.NFI_cat; });
@@ -353,7 +353,7 @@ var colorScale2 = d3.scale.ordinal()
         .renderLabel(true)
         .label(function(d) {   return Math.round((d.endAngle - d.startAngle) / Math.PI * 50) + '%';})
         .renderTitle(true)
-        .colors(["#2572ad", "#2572ad", "#4D9CD8", "#FC7E77", "#de4c44"]);
+        .colors(["#2572ad", "#4D9CD8", "#FC7E77", "#de4c44"]);
     // .colorDomain([colorScale]) ;
      //  .ordering(function (p) { return -p.value; });
     
@@ -367,7 +367,7 @@ var colorScale2 = d3.scale.ordinal()
         .renderLabel(true)
      .label(function(d) {   return Math.round((d.endAngle - d.startAngle) / Math.PI * 50) + '%';})
         .renderTitle(true)
-        .colors(["#2572ad", "#2572ad", "#4D9CD8", "#FC7E77", "#de4c44"]);
+        .colors(["#2572ad",  "#4D9CD8", "#FC7E77", "#de4c44"]);
     //  .colorDomain(colorScale);
  
     
